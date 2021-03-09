@@ -1,5 +1,9 @@
 #include <FastLED.h>
 
+#include <autoDelay.h>
+
+
+
 #define LED_PIN     5
 #define NUM_LEDS    9
 #define BRIGHTNESS  100
@@ -32,6 +36,11 @@ CRGBArray <NUM_LEDS> leds;
 CRGBPalette16 currentPalette;
 TBlendType    currentBlending;
 
+
+CRGBPalette16 nextPalette;
+//TBlendType    currentBlending;
+
+
 extern CRGBPalette16 myRedWhiteBluePalette;
 extern const TProgmemPalette16 myRedWhiteBluePalette_p PROGMEM;
 
@@ -39,14 +48,7 @@ extern const TProgmemPalette16 myRedWhiteBluePalette_p PROGMEM;
 // set up instance of palette
 //CRGBPalette16 tropicalPalette;
 
-/*
-  // This function sets up a palette of Yellow & Blue
-  CRGBPalette16 tropicalPalette(
-  0,    255,  255,  0,   // at index 192, red(255,0,0)
-  16,    0, 255, 255  //at index 255, white(255,255,255)
-  );
 
-*/
 
 
 DEFINE_GRADIENT_PALETTE( tropicalPalette ) {
@@ -58,11 +60,53 @@ DEFINE_GRADIENT_PALETTE( tropicalPalette ) {
 };
 
 
+DEFINE_GRADIENT_PALETTE( raggaPalette ) {
+  0,      255,  255,  0,    /* at index 0, yellow(0,0,0) */
+  100,     100,  255,  0,    /* at index 0, greenyellow(0,0,0) */
+  150,      0,  255, 0,    /* at index 192, green(255,0,0) */
+  200,     255,  0, 0, /* at index 255, red(255,255,255) */
+  255,    255,  255,  0    /* at index 0, yellow(0,0,0) */       // last entry must be for index 255
+};
+
+
+DEFINE_GRADIENT_PALETTE( transPalette ) {
+  0,      50,  230,  255,    /* at index 0, Blue(0,0,0) */
+  50,     255,  50,  50,    /* at index 0, Pink(0,0,0) */
+  125,      255,  255, 255,    /* at index 192, White(255,0,0) */
+  200,     255,  50, 50, /* at index 255, Pink(255,255,255) */
+  255,    50,  190,  255   /* at index 0, Blue(0,0,0) */       // last entry must be for index 255
+};
+
+
+
+DEFINE_GRADIENT_PALETTE( biPalette ) {
+  0,        0,  255,  255,    /* at index 0, teal(0,0,0) */
+  50,       0,  0,    255,    /* at index 0, blue(0,0,0) */
+  190,    255,  0,    255, /* at index 255, purple(255,255,255) */
+  255,    255,  0,    100   /* at index 0, deep purple(0,0,0) */       // last entry must be for index 255
+};
+
+
+DEFINE_GRADIENT_PALETTE( orange_white ) {
+  0,        255,  200,  0,    /* at index 0, orange(0,0,0) */
+  50,       255,  40, 0,    /* at index 0, orange(0,0,0) */
+  235,     255,  100,  0,    /* at index 0, orange(0,0,0) */
+  245,    255,  255,    255, /* at index 255, white(255,255,255) */
+  255,    255,  50,    0   /* at index 0, orange(0,0,0) */       // last entry must be for index 255
+};
+
+
+
+char debugPrint[42];
+
 
 void setup() {
+  Serial.begin(115200);
   delay( 1000 ); // power-up safety delay
   FastLED.addLeds<LED_TYPE, LED_PIN, COLOR_ORDER>(leds, NUM_LEDS).setCorrection( TypicalLEDStrip );
   FastLED.setBrightness(  BRIGHTNESS );
+
+  randomSeed(analogRead(0));   // psudo random number generator for randomness & chaos
 
   leds(0, 9) = CHSV(255, 255, 0);
 
@@ -71,8 +115,12 @@ void setup() {
 
   // currentPalette = RainbowColors_p;
 
-  currentPalette = tropicalPalette;
+  // currentPalette = tropicalPalette;
+
+  currentPalette = orange_white;
   currentBlending = LINEARBLEND;
+
+  nextPalette = biPalette;
 
 }
 
@@ -82,41 +130,178 @@ void setup() {
 
 byte currentHue = 0;
 
+autoDelay shift_effect;
+
+bool transitionMode = false;
+
+uint32_t transition_timer = 10;    // effect transitions are in seconds
+
+
+void triggerTransition() {
+
+  if (shift_effect.secondsDelay(transition_timer)) {
+    if (transitionMode == false) {
+      Serial.println("Starting Transition");
+      transitionMode = true;
+    }
+  }
+}
+
+int counter;                 // Counts 
+int counterReset = 20;
+byte counter2;
+
 
 
 
 void loop() {
-  //  ChangePalettePeriodically();
-
-  //   solid_colour_hsv(100, 255, 255);
-
-  //  solid_colour_rgb(0, 255, 255);
-
+  randomise_led_directions();
+  //  randomise_colour_direction();   // < Dont like the effect this has
 
 
   static uint8_t startIndex = 0;
   startIndex = startIndex + 1; /* motion speed */
 
-  FillLEDsFromPaletteColors( startIndex);
+
+
+  triggerTransition();
+
+  if (transitionMode) {
+
+
+    if (counter >= counterReset) {
+      nblendPaletteTowardPalette(currentPalette, nextPalette, 12);
+      counter = 0;
+      counter2++;
+      Serial.println(counter2);
+    }
+
+    counter++;
+
+    if (counter2 >= 200) {    // int value here setsw how many times palettes are blended untill it switches to new pallet
+
+      currentPalette = nextPalette;
+      //  nextPallet = xxxxx
+      transitionMode = false;
+
+    }
+
+  } else {
+
+
+  }
+
+
+  FillLEDsFromPaletteColors(startIndex);
 
   FastLED.show();
   FastLED.delay(1000 / UPDATES_PER_SECOND);
 }
 
 
+autoDelay hueShiftDelay;
 
-void FillLEDsFromPaletteColors( uint8_t colorIndex) {
-//  uint8_t brightness = 255;
+int hue_steps = 3;
+uint32_t hue_shift_timing = 5000;
 
-  for ( int i = 0; i < NUM_LEDS; i++) {
-    leds[i] = ColorFromPalette( currentPalette, colorIndex, BRIGHTNESS, currentBlending);
-    colorIndex += HUE_STEPS;
+
+void randomise_colour_direction() {
+  if (hueShiftDelay.millisDelay(hue_shift_timing)) {
+    hue_steps = random(-10, 10);
+    sprintf(debugPrint, "hue_steps: [%i]", hue_steps);
+    Serial.println(debugPrint);
   }
+
 }
 
 
 
 
+
+
+
+
+autoDelay directionDelay;   // Controls the delay between rolling dice on a direction change
+
+uint32_t direction_timing = 5000;
+
+bool ledDirection = true;         // Sets the LEDs to update in a positive direction if true, or reverse direction if false
+
+
+void randomise_led_directions() {
+  if (directionDelay.millisDelay(direction_timing)) {    // if delay time is up,
+    byte diceRoll = random(0, 5);                               // Roll the dice
+    if (diceRoll < 3) {                                     // if less than 3, reverse LED direction
+      ledDirection = false;
+    } else {
+      ledDirection = true;                                 // Else the direction is forward
+    }
+    // Function here to randomise direction_timing
+    direction_timing = random(500, 15000);                       // Randomise changing direction again from between 0.5s to 10s
+    sprintf(debugPrint, "Direction Timing: [%u]", direction_timing);
+    Serial.println(debugPrint);
+  }
+}
+
+
+
+void FillLEDsFromPaletteColors( uint8_t colorIndex) {
+
+  if (ledDirection) {
+    for ( int i = 0; i < NUM_LEDS; i++) {
+      leds[i] = ColorFromPalette( currentPalette, colorIndex, BRIGHTNESS, currentBlending);
+      colorIndex += hue_steps;
+    }
+  } else {                                                                                              // Same for loop as before but runs in reverse order
+    for ( int i = NUM_LEDS; i >= 0; i--) {
+      leds[i] = ColorFromPalette( currentPalette, colorIndex, BRIGHTNESS, currentBlending);
+      colorIndex += hue_steps;
+
+    }
+  }
+}
+
+
+
+// nblendPaletteTowardPalette:
+//               Alter one palette by making it slightly more like
+//               a 'target palette', used for palette cross-fades.
+//
+//               It does this by comparing each of the R, G, and B channels
+//               of each entry in the current palette to the corresponding
+//               entry in the target palette and making small adjustments:
+//                 If the Red channel is too low, it will be increased.
+//                 If the Red channel is too high, it will be slightly reduced.
+//                 ... and likewise for Green and Blue channels.
+//
+//               Additionally, there are two significant visual improvements
+//               to this algorithm implemented here.  First is this:
+//                 When increasing a channel, it is stepped up by ONE.
+//                 When decreasing a channel, it is stepped down by TWO.
+//               Due to the way the eye perceives light, and the way colors
+//               are represented in RGB, this produces a more uniform apparent
+//               brightness when cross-fading between most palette colors.
+//
+//               The second visual tweak is limiting the number of changes
+//               that will be made to the palette at once.  If all the palette
+//               entries are changed at once, it can give a muddled appearance.
+//               However, if only a few palette entries are changed at once,
+//               you get a visually smoother transition: in the middle of the
+//               cross-fade your current palette will actually contain some
+//               colors from the old palette, a few blended colors, and some
+//               colors from the new palette.
+//               The maximum number of possible palette changes per call
+//               is 48 (sixteen color entries time three channels each).
+//               The default 'maximim number of changes' here is 12, meaning
+//               that only approximately a quarter of the palette entries
+//               will be changed per call.
+/*
+                  CRGBPalette16& currentPalette,
+                                CRGBPalette16& targetPalette,
+                                uint8_t maxChanges=24);
+
+*/
+//nblendPaletteTowardPalette(currentPalette, nextPalette, 24);
 
 
 
