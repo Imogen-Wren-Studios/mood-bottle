@@ -190,12 +190,15 @@ DEFINE_GRADIENT_PALETTE( colour_tester) {
   255,    139,  75, 15       /* at index 0, blue(0,0,0) */       // last entry must be for index 255
 };
 
+// add a macro to DEFINE_HSV_GRADIENT_PALETTE
 
 #define START_PALETTE planet_mars
 
 #define NUM_FX 9
 
-#define SOLAR_SYSTEM true
+#define SOLAR_SYSTEM true        // When true it overwrites switching and only does solar system mode
+
+bool solar_system_mode = true;
 
 CRGBPalette16 select_palette(byte number) {
 
@@ -364,22 +367,39 @@ uint32_t transition_timer = 45;    // effect transitions are in seconds
 
 
 
-
+// Cycles through banks of palettes based on program type
 
 void switchPalette() {
   if (shift_effect.secondsDelay(transition_timer)) {
     Serial.println("Fading into New Palette");
     currentPalette = nextPalette;
+    
     if (SOLAR_SYSTEM) {
       nextPalette = select_planet();
+    } else if (solar_system_mode){
+       nextPalette = select_planet();
     } else {
       nextPalette = select_palette(random(0, NUM_FX));
     }
   }
 }
 
+autoDelay programDelay;
 
+#define PROGRAM_DELAY 10   // Delay to switch progams in minuites
 
+// Function to change program from colours to planets periodically (10 mins?)
+
+void switchProgram(){
+  if (programDelay.minutesDelay(PROGRAM_DELAY)){
+  if (solar_system_mode){
+   solar_system_mode = false;
+  } else {
+    solar_sytem_mode = true;
+  }
+  }
+  
+}
 
 
 
