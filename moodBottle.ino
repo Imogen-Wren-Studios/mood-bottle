@@ -11,7 +11,7 @@
 #define COLOR_ORDER GRB
 CRGBArray <NUM_LEDS> leds;
 
-#define UPDATES_PER_SECOND 25
+#define UPDATES_PER_SECOND 30
 #define HUE_STEPS 5                // Number of steps to advance through palette between each for loop. Origionally 3
 
 // This example shows several ways to set up and use 'palettes' of colors
@@ -95,6 +95,223 @@ DEFINE_GRADIENT_PALETTE( orange_white ) {
   255,    255,  50,    0   /* at index 0, orange(0,0,0) */       // last entry must be for index 255
 };
 
+DEFINE_GRADIENT_PALETTE( all_blue ) {
+  0,        0,  255, 255,    /* at index 0, orange(0,0,0) */
+  50,       0,  0, 255,    /* at index 0, orange(0,0,0) */
+  235,     0,  255,  255,    /* at index 0, orange(0,0,0) */
+  245,    255,  255,    255, /* at index 255, white(255,255,255) */
+  255,    0,  40,   255   /* at index 0, orange(0,0,0) */       // last entry must be for index 255
+};
+
+DEFINE_GRADIENT_PALETTE( green_white ) {
+  0,        0,  255, 0,    /* at index 0, orange(0,0,0) */
+  50,       100,  255, 0,    /* at index 0, orange(0,0,0) */
+  235,     0,  255,  0,    /* at index 0, orange(0,0,0) */
+  245,    255,  255,    255, /* at index 255, white(255,255,255) */
+  255,    120,  255,   0   /* at index 0, orange(0,0,0) */       // last entry must be for index 255
+};
+
+
+DEFINE_GRADIENT_PALETTE( planet_earth) {
+  0,        0,  0, 255,    /* at index 0, blue(0,0,0) */
+  5,        0,  200, 255,    /* at index 0, blue(0,0,0) */
+  10,       255,  255, 255,    /* at index 0, blue(0,0,0) */
+  15,        0,  0, 255,    /* at index 0, blue(0,0,0) */
+  100,        0,  100, 255,    /* at index 0, blue(0,0,0) */
+  120,       0,  255, 0,    /* at index 0, green(0,0,0) */
+  140,       100,  255, 0,    /* at index 0, green(0,0,0) */
+  150,     0,  255,  150,    /* at index 0, blue(0,0,0) */
+  200,     0,  255,  0,    /* at index 0, green(0,0,0) */
+  220,     150,  255,  0,    /* at index 0, green(0,0,0) */
+  235,        139,  75, 1,    /* at index 0, desertbrown(0,0,0) */
+  240,    139,  75, 15,       /* at index 0, desertbrown(0,0,0) */       // last entry must be for index 255
+  245,    255,  200,    0, /* at index 255, desertbright(255,255,255) */
+  255,    0,  100,   255   /* at index 0, blue(0,0,0) */       // last entry must be for index 255
+};
+
+DEFINE_GRADIENT_PALETTE( planet_mercury) {
+  0,        255, 190, 0,    /* at index 0, blue(0,0,0) */
+  5,        255,  200, 0,    /* at index 0, blue(0,0,0) */
+  10,       255,  20, 0,    /* at index 0, blue(0,0,0) */
+  15,       255,  100, 0,    /* at index 0, blue(0,0,0) */
+  100,        255,  0, 0,    /* at index 0, blue(0,0,0) */
+  120,       255,  190, 5,    /* at index 0, green(0,0,0) */
+  140,       150,  100, 0,    /* at index 0, green(0,0,0) */
+  150,     255,  190,  0,    /* at index 0, blue(0,0,0) */
+  200,     250,  20,  0,    /* at index 0, green(0,0,0) */
+  220,     150,  50,  0,    /* at index 0, green(0,0,0) */
+  235,      139,  75, 1,    /* at index 0, desertbrown(0,0,0) */
+  240,        0,  0, 0,       /* at index 0, desertbrown(0,0,0) */       // last entry must be for index 255
+  245,    145,  60,    0, /* at index 255, desertbright(255,255,255) */
+  255,    50,  50,   0   /* at index 0, blue(0,0,0) */       // last entry must be for index 255
+};
+
+
+DEFINE_GRADIENT_PALETTE( planet_venus) {
+  0,        190, 190, 170,    /* at index 0, blue(0,0,0) */
+  5,        230,  200, 100,    /* at index 0, blue(0,0,0) */
+  10,       230,  200, 20,    /* at index 0, blue(0,0,0) */
+  15,       150,  120, 90,    /* at index 0, blue(0,0,0) */
+  100,        70,  50, 40,    /* at index 0, blue(0,0,0) */
+  120,       220,  190, 150,    /* at index 0, green(0,0,0) */
+  140,       150,  100, 50,    /* at index 0, green(0,0,0) */
+  150,     200,  190,  40,    /* at index 0, blue(0,0,0) */
+  200,     250, 70,  0,    /* at index 0, green(0,0,0) */
+  210,     150,  100,  0,    /* at index 0, green(0,0,0) */
+  235,      140,  65, 1,    /* at index 0, desertbrown(0,0,0) */
+  240,        0,  0, 0,       /* at index 0, desertbrown(0,0,0) */       // last entry must be for index 255
+  245,    145,  120,    30, /* at index 255, desertbright(255,255,255) */
+  255,    60,  50,   50   /* at index 0, blue(0,0,0) */       // last entry must be for index 255
+};
+
+// Would prefer an HSV way of specifying this.
+DEFINE_GRADIENT_PALETTE( planet_mars) {
+  0,        255, 140, 0,    /* at index 0, blue(0,0,0) */
+  8,        240,  20, 0,    /* at index 0, blue(0,0,0) */
+  10,       200,  170, 100,    /* at index 0, blue(0,0,0) */
+  13,       200,  100, 0,    /* at index 0, blue(0,0,0) */
+  100,        190,  50, 0,    /* at index 0, blue(0,0,0) */
+  120,       240,  50, 0,    /* at index 0, green(0,0,0) */
+  140,      190,  64, 0,    /* at index 0, green(0,0,0) */
+  150,     230,  30,  0,    /* at index 0, blue(0,0,0) */
+  200,     255, 23,  0,    /* at index 0, green(0,0,0) */
+  210,     100,  100,  0,    /* at index 0, green(0,0,0) */
+  235,      200,  65, 1,    /* at index 0, desertbrown(0,0,0) */
+  240,        0,  0, 0,       /* at index 0, desertbrown(0,0,0) */       // last entry must be for index 255
+  245,    145,  40,    0, /* at index 255, desertbright(255,255,255) */
+  255,    120,  60,   0   /* at index 0, blue(0,0,0) */       // last entry must be for index 255
+};
+
+
+
+DEFINE_GRADIENT_PALETTE( colour_tester) {
+  0,        139,  75, 1,    /* at index 0, blue(0,0,0) */
+
+  255,    139,  75, 15       /* at index 0, blue(0,0,0) */       // last entry must be for index 255
+};
+
+
+#define START_PALETTE planet_mars
+
+#define NUM_FX 9
+
+#define SOLAR_SYSTEM true
+
+CRGBPalette16 select_palette(byte number) {
+
+  CRGBPalette16 outputPalette;
+
+
+  switch (number) {
+    case 0:
+      outputPalette = tropicalPalette;
+      Serial.println("Tropical");
+      break;
+    case 1:
+      outputPalette = raggaPalette;
+      Serial.println("Ragga");
+      break;
+    case 2:
+      outputPalette = transPalette;
+      Serial.println("Trans");
+      break;
+    case 3:
+      outputPalette = biPalette;
+      Serial.println("Bi");
+      break;
+    case 4:
+      outputPalette = orange_white;
+      Serial.println("Orange/White");
+      break;
+    case 5:
+      outputPalette = all_blue;
+      Serial.println("All Blue");
+      break;
+    case 6:
+      outputPalette = green_white;
+      Serial.println("Green/White");
+      break;
+    case 7:
+      outputPalette = planet_earth;
+      Serial.println("Planet Earth");
+      break;
+    default:
+      Serial.println("Random");
+      for ( int i = 0; i < 16; i++) {
+        outputPalette[i] = CHSV( random8(), 255, random8());
+      }
+      break;
+  }
+  //return green_white;
+  return outputPalette;
+}
+
+
+byte current_planet = 0;
+
+CRGBPalette16 select_planet() {
+
+  CRGBPalette16 outputPalette;
+
+
+  switch (current_planet) {
+    case 0:
+      outputPalette = planet_mercury;
+      Serial.println("Mercury");
+      break;
+    case 1:
+      outputPalette = planet_venus;
+      Serial.println("Venus");
+      break;
+    case 2:
+      outputPalette = planet_earth;
+      Serial.println("Earth");
+      break;
+    case 3:
+      outputPalette = planet_mars;
+      Serial.println("Mars");
+      break;
+    case 4:
+      outputPalette = planet_earth;
+      Serial.println("Jupiter");
+      break;
+    case 5:
+      outputPalette = planet_earth;
+      Serial.println("Saturn");
+      break;
+    case 6:
+      outputPalette = planet_earth;
+      Serial.println("Uranus");
+      break;
+    case 7:
+      outputPalette = planet_earth;
+      Serial.println("Neptune");
+      break;
+    case 8:
+      outputPalette = planet_earth;
+      Serial.println("Pluto");
+      break;
+
+    default:
+      Serial.println("Random");
+      for ( int i = 0; i < 16; i++) {
+        outputPalette[i] = CHSV( random8(), 255, random8());
+      }
+      break;
+  }
+  //return green_white;
+  current_planet++;
+
+  if (current_planet >= 9) {
+    current_planet = 0;
+  }
+  return outputPalette;
+}
+
+
+
+
+
 
 
 char debugPrint[42];
@@ -102,25 +319,32 @@ char debugPrint[42];
 
 void setup() {
   Serial.begin(115200);
+  Serial.println("Gathering Spectrum...");
   delay( 1000 ); // power-up safety delay
   FastLED.addLeds<LED_TYPE, LED_PIN, COLOR_ORDER>(leds, NUM_LEDS).setCorrection( TypicalLEDStrip );
+  Serial.println("...Processing Light Threads...");
   FastLED.setBrightness(  BRIGHTNESS );
 
   randomSeed(analogRead(0));   // psudo random number generator for randomness & chaos
 
   leds(0, 9) = CHSV(255, 255, 0);
 
-
+  Serial.println("               Weaving Colours...  \n     ...Selecting Pigments\n");
+  delay(500);
+  Serial.println("Chroma Paintbrush Initialised:  Luminescence Matrix Applied.\n Starting Visual Light Imbument\n ");
   FastLED.show();
 
-  // currentPalette = RainbowColors_p;
 
-  // currentPalette = tropicalPalette;
 
-  currentPalette = orange_white;
+  currentPalette = START_PALETTE;
+  // currentPalette = select_palette(random(0, 5));
+
+
   currentBlending = LINEARBLEND;
 
-  nextPalette = biPalette;
+  // nextPalette = select_palette(random(0, NUM_FX));
+
+  nextPalette = START_PALETTE;
 
 }
 
@@ -128,35 +352,52 @@ void setup() {
 
 
 
-byte currentHue = 0;
 
 autoDelay shift_effect;
 
-bool transitionMode = false;
-
-uint32_t transition_timer = 10;    // effect transitions are in seconds
 
 
-void triggerTransition() {
 
+
+
+uint32_t transition_timer = 45;    // effect transitions are in seconds
+
+
+
+
+
+void switchPalette() {
   if (shift_effect.secondsDelay(transition_timer)) {
-    if (transitionMode == false) {
-      Serial.println("Starting Transition");
-      transitionMode = true;
+    Serial.println("Fading into New Palette");
+    currentPalette = nextPalette;
+    if (SOLAR_SYSTEM) {
+      nextPalette = select_planet();
+    } else {
+      nextPalette = select_palette(random(0, NUM_FX));
     }
   }
 }
 
-int counter;                 // Counts 
-int counterReset = 20;
-byte counter2;
 
 
 
+
+
+
+
+
+/*
+    Change in paradigm
+
+      - Program is always "Transitioning" from one to another, it seems to take less than 1min to transition
+      so each effect will cycle for at least 2 mins
+
+
+*/
 
 void loop() {
-  randomise_led_directions();
-  //  randomise_colour_direction();   // < Dont like the effect this has
+  randomise_led_directions();    // Changes the direction the LEDs are painted in
+  //  randomise_colour_direction();   // < Dont like the effect this has meant to randomise the direction of the colour wheel, but causes jumps and skips
 
 
   static uint8_t startIndex = 0;
@@ -164,32 +405,12 @@ void loop() {
 
 
 
-  triggerTransition();
 
-  if (transitionMode) {
-
-
-    if (counter >= counterReset) {
-      nblendPaletteTowardPalette(currentPalette, nextPalette, 12);
-      counter = 0;
-      counter2++;
-      Serial.println(counter2);
-    }
-
-    counter++;
-
-    if (counter2 >= 200) {    // int value here setsw how many times palettes are blended untill it switches to new pallet
-
-      currentPalette = nextPalette;
-      //  nextPallet = xxxxx
-      transitionMode = false;
-
-    }
-
-  } else {
+  switchPalette();                // Switches colour palette periodically (actually only changes nextPalette, which is blended into currentPalette u
 
 
-  }
+
+  nblendPaletteTowardPalette(currentPalette, nextPalette, 12);    // blends next palette into currentPalette
 
 
   FillLEDsFromPaletteColors(startIndex);
@@ -198,6 +419,11 @@ void loop() {
   FastLED.delay(1000 / UPDATES_PER_SECOND);
 }
 
+
+
+
+
+// Elements to change things at different times for randomness
 
 autoDelay hueShiftDelay;
 
@@ -208,16 +434,11 @@ uint32_t hue_shift_timing = 5000;
 void randomise_colour_direction() {
   if (hueShiftDelay.millisDelay(hue_shift_timing)) {
     hue_steps = random(-10, 10);
-    sprintf(debugPrint, "hue_steps: [%i]", hue_steps);
-    Serial.println(debugPrint);
+    //  sprintf(debugPrint, "hue_steps: [%i]", hue_steps);
+    //  Serial.println(debugPrint);
   }
 
 }
-
-
-
-
-
 
 
 
@@ -231,19 +452,36 @@ bool ledDirection = true;         // Sets the LEDs to update in a positive direc
 void randomise_led_directions() {
   if (directionDelay.millisDelay(direction_timing)) {    // if delay time is up,
     byte diceRoll = random(0, 5);                               // Roll the dice
-    if (diceRoll < 3) {                                     // if less than 3, reverse LED direction
-      ledDirection = false;
+    Serial.print("Roll Dice: [");
+    Serial.print(diceRoll);
+    Serial.println("]");
+    if (diceRoll < 1) {                                     // if less than 2, //do nothing
+      //   Serial.println("Dice Roll Failed, Direction Unchanged");
     } else {
-      ledDirection = true;                                 // Else the direction is forward
+      if (ledDirection) {
+        ledDirection = false;
+        //  Serial.println("LED Direction Backwards");
+      } else {
+        ledDirection = true;                                 // Else Change the directions
+        //  Serial.println("LED Direction Forwards.");
+      }
+
     }
     // Function here to randomise direction_timing
     direction_timing = random(500, 15000);                       // Randomise changing direction again from between 0.5s to 10s
-    sprintf(debugPrint, "Direction Timing: [%u]", direction_timing);
-    Serial.println(debugPrint);
+    //  sprintf(debugPrint, "Direction Timing: [%u]", direction_timing);
+    //Serial.println(debugPrint);
+
+    // Serial.println(debugPrint);
   }
 }
 
 
+
+
+
+
+// Utilities
 
 void FillLEDsFromPaletteColors( uint8_t colorIndex) {
 
@@ -259,6 +497,10 @@ void FillLEDsFromPaletteColors( uint8_t colorIndex) {
 
     }
   }
+  Serial.print("Colour Index: [");
+  Serial.print(colorIndex);
+  Serial.println("]");
+
 }
 
 
@@ -390,7 +632,7 @@ void ChangePalettePeriodically() {
 // This function fills the palette with totally random colors.
 void SetupTotallyRandomPalette() {
   for ( int i = 0; i < 16; i++) {
-    currentPalette[i] = CHSV( random8(), 255, random8());
+    currentPalette[i] = CHSV( random8(), 255, 255);
   }
 }
 
