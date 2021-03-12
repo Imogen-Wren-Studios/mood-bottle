@@ -4,6 +4,8 @@
 
 
 
+
+
 #define LED_PIN     5
 #define NUM_LEDS    9
 #define BRIGHTNESS  100
@@ -31,6 +33,8 @@ CRGBArray <NUM_LEDS> leds;
 // Some notes on the more abstract 'theory and practice' of
 // FastLED compact palettes are at the bottom of this file.
 
+#include "colour_palettes.h"
+#include "planet_palettes.h"
 
 
 CRGBPalette16 currentPalette;
@@ -51,152 +55,11 @@ extern const TProgmemPalette16 myRedWhiteBluePalette_p PROGMEM;
 
 
 
-DEFINE_GRADIENT_PALETTE( tropicalPalette ) {
-  0,      255,  230,  0,    /* at index 0, yellow(0,0,0) */
-  50,     255,  200,  0,    /* at index 0, orange(0,0,0) */
-  100,      0,  255, 255,    /* at index 192, teal(255,0,0) */
-  200,      0,  255, 100, /* at index 255, blue(255,255,255) */
-  255,    255,  190,  0    /* at index 0, yellow(0,0,0) */       // last entry must be for index 255
-};
-
-
-DEFINE_GRADIENT_PALETTE( raggaPalette ) {
-  0,      255,  255,  0,    /* at index 0, yellow(0,0,0) */
-  100,     100,  255,  0,    /* at index 0, greenyellow(0,0,0) */
-  150,      0,  255, 0,    /* at index 192, green(255,0,0) */
-  200,     255,  0, 0, /* at index 255, red(255,255,255) */
-  255,    255,  255,  0    /* at index 0, yellow(0,0,0) */       // last entry must be for index 255
-};
-
-
-DEFINE_GRADIENT_PALETTE( transPalette ) {
-  0,      50,  230,  255,    /* at index 0, Blue(0,0,0) */
-  50,     255,  50,  50,    /* at index 0, Pink(0,0,0) */
-  125,      255,  255, 255,    /* at index 192, White(255,0,0) */
-  200,     255,  50, 50, /* at index 255, Pink(255,255,255) */
-  255,    50,  190,  255   /* at index 0, Blue(0,0,0) */       // last entry must be for index 255
-};
-
-
-
-DEFINE_GRADIENT_PALETTE( biPalette ) {
-  0,        0,  255,  255,    /* at index 0, teal(0,0,0) */
-  50,       0,  0,    255,    /* at index 0, blue(0,0,0) */
-  190,    255,  0,    255, /* at index 255, purple(255,255,255) */
-  255,    255,  0,    100   /* at index 0, deep purple(0,0,0) */       // last entry must be for index 255
-};
-
-
-DEFINE_GRADIENT_PALETTE( orange_white ) {
-  0,        255,  200,  0,    /* at index 0, orange(0,0,0) */
-  50,       255,  40, 0,    /* at index 0, orange(0,0,0) */
-  235,     255,  100,  0,    /* at index 0, orange(0,0,0) */
-  245,    255,  255,    255, /* at index 255, white(255,255,255) */
-  255,    255,  50,    0   /* at index 0, orange(0,0,0) */       // last entry must be for index 255
-};
-
-DEFINE_GRADIENT_PALETTE( all_blue ) {
-  0,        0,  255, 255,    /* at index 0, orange(0,0,0) */
-  50,       0,  0, 255,    /* at index 0, orange(0,0,0) */
-  235,     0,  255,  255,    /* at index 0, orange(0,0,0) */
-  245,    255,  255,    255, /* at index 255, white(255,255,255) */
-  255,    0,  40,   255   /* at index 0, orange(0,0,0) */       // last entry must be for index 255
-};
-
-DEFINE_GRADIENT_PALETTE( green_white ) {
-  0,        0,  255, 0,    /* at index 0, orange(0,0,0) */
-  50,       100,  255, 0,    /* at index 0, orange(0,0,0) */
-  235,     0,  255,  0,    /* at index 0, orange(0,0,0) */
-  245,    255,  255,    255, /* at index 255, white(255,255,255) */
-  255,    120,  255,   0   /* at index 0, orange(0,0,0) */       // last entry must be for index 255
-};
-
-
-DEFINE_GRADIENT_PALETTE( planet_earth) {
-  0,        0,  0, 255,    /* at index 0, blue(0,0,0) */
-  5,        0,  200, 255,    /* at index 0, blue(0,0,0) */
-  10,       255,  255, 255,    /* at index 0, blue(0,0,0) */
-  15,        0,  0, 255,    /* at index 0, blue(0,0,0) */
-  100,        0,  100, 255,    /* at index 0, blue(0,0,0) */
-  120,       0,  255, 0,    /* at index 0, green(0,0,0) */
-  140,       100,  255, 0,    /* at index 0, green(0,0,0) */
-  150,     0,  255,  150,    /* at index 0, blue(0,0,0) */
-  200,     0,  255,  0,    /* at index 0, green(0,0,0) */
-  220,     150,  255,  0,    /* at index 0, green(0,0,0) */
-  235,        139,  75, 1,    /* at index 0, desertbrown(0,0,0) */
-  240,    139,  75, 15,       /* at index 0, desertbrown(0,0,0) */       // last entry must be for index 255
-  245,    255,  200,    0, /* at index 255, desertbright(255,255,255) */
-  255,    0,  100,   255   /* at index 0, blue(0,0,0) */       // last entry must be for index 255
-};
-
-DEFINE_GRADIENT_PALETTE( planet_mercury) {
-  0,        255, 190, 0,    /* at index 0, blue(0,0,0) */
-  5,        255,  200, 0,    /* at index 0, blue(0,0,0) */
-  10,       255,  20, 0,    /* at index 0, blue(0,0,0) */
-  15,       255,  100, 0,    /* at index 0, blue(0,0,0) */
-  100,        255,  0, 0,    /* at index 0, blue(0,0,0) */
-  120,       255,  190, 5,    /* at index 0, green(0,0,0) */
-  140,       150,  100, 0,    /* at index 0, green(0,0,0) */
-  150,     255,  190,  0,    /* at index 0, blue(0,0,0) */
-  200,     250,  20,  0,    /* at index 0, green(0,0,0) */
-  220,     150,  50,  0,    /* at index 0, green(0,0,0) */
-  235,      139,  75, 1,    /* at index 0, desertbrown(0,0,0) */
-  240,        0,  0, 0,       /* at index 0, desertbrown(0,0,0) */       // last entry must be for index 255
-  245,    145,  60,    0, /* at index 255, desertbright(255,255,255) */
-  255,    50,  50,   0   /* at index 0, blue(0,0,0) */       // last entry must be for index 255
-};
-
-
-DEFINE_GRADIENT_PALETTE( planet_venus) {
-  0,        190, 190, 170,    /* at index 0, blue(0,0,0) */
-  5,        230,  200, 100,    /* at index 0, blue(0,0,0) */
-  10,       230,  200, 20,    /* at index 0, blue(0,0,0) */
-  15,       150,  120, 90,    /* at index 0, blue(0,0,0) */
-  100,        70,  50, 40,    /* at index 0, blue(0,0,0) */
-  120,       220,  190, 150,    /* at index 0, green(0,0,0) */
-  140,       150,  100, 50,    /* at index 0, green(0,0,0) */
-  150,     200,  190,  40,    /* at index 0, blue(0,0,0) */
-  200,     250, 70,  0,    /* at index 0, green(0,0,0) */
-  210,     150,  100,  0,    /* at index 0, green(0,0,0) */
-  235,      140,  65, 1,    /* at index 0, desertbrown(0,0,0) */
-  240,        0,  0, 0,       /* at index 0, desertbrown(0,0,0) */       // last entry must be for index 255
-  245,    145,  120,    30, /* at index 255, desertbright(255,255,255) */
-  255,    60,  50,   50   /* at index 0, blue(0,0,0) */       // last entry must be for index 255
-};
-
-// Would prefer an HSV way of specifying this.
-DEFINE_GRADIENT_PALETTE( planet_mars) {
-  0,        255, 140, 0,    /* at index 0, blue(0,0,0) */
-  8,        240,  20, 0,    /* at index 0, blue(0,0,0) */
-  10,       200,  170, 100,    /* at index 0, blue(0,0,0) */
-  13,       200,  100, 0,    /* at index 0, blue(0,0,0) */
-  100,        190,  50, 0,    /* at index 0, blue(0,0,0) */
-  120,       240,  50, 0,    /* at index 0, green(0,0,0) */
-  140,      190,  64, 0,    /* at index 0, green(0,0,0) */
-  150,     230,  30,  0,    /* at index 0, blue(0,0,0) */
-  200,     255, 23,  0,    /* at index 0, green(0,0,0) */
-  210,     100,  100,  0,    /* at index 0, green(0,0,0) */
-  235,      200,  65, 1,    /* at index 0, desertbrown(0,0,0) */
-  240,        0,  0, 0,       /* at index 0, desertbrown(0,0,0) */       // last entry must be for index 255
-  245,    145,  40,    0, /* at index 255, desertbright(255,255,255) */
-  255,    120,  60,   0   /* at index 0, blue(0,0,0) */       // last entry must be for index 255
-};
-
-
-
-DEFINE_GRADIENT_PALETTE( colour_tester) {
-  0,        139,  75, 1,    /* at index 0, blue(0,0,0) */
-
-  255,    139,  75, 15       /* at index 0, blue(0,0,0) */       // last entry must be for index 255
-};
-
-// add a macro to DEFINE_HSV_GRADIENT_PALETTE
-
-#define START_PALETTE planet_mars
-
 #define NUM_FX 9
 
 #define SOLAR_SYSTEM true        // When true it overwrites switching and only does solar system mode
+
+#define PRINT_INDEX true
 
 bool solar_system_mode = true;
 
@@ -275,11 +138,11 @@ CRGBPalette16 select_planet() {
       Serial.println("Mars");
       break;
     case 4:
-      outputPalette = planet_earth;
+      outputPalette = planet_jupiter;
       Serial.println("Jupiter");
       break;
     case 5:
-      outputPalette = planet_earth;
+      outputPalette = planet_saturn;
       Serial.println("Saturn");
       break;
     case 6:
@@ -335,6 +198,10 @@ void setup() {
   Serial.println("               Weaving Colours...  \n     ...Selecting Pigments\n");
   delay(500);
   Serial.println("Chroma Paintbrush Initialised:  Luminescence Matrix Applied.\n Starting Visual Light Imbument\n ");
+
+  if (SOLAR_SYSTEM) {
+    Serial.println("Launching Interplanetary Voyage");
+  }
   FastLED.show();
 
 
@@ -373,11 +240,11 @@ void switchPalette() {
   if (shift_effect.secondsDelay(transition_timer)) {
     Serial.println("Fading into New Palette");
     currentPalette = nextPalette;
-    
+
     if (SOLAR_SYSTEM) {
       nextPalette = select_planet();
-    } else if (solar_system_mode){
-       nextPalette = select_planet();
+    } else if (solar_system_mode) {
+      nextPalette = select_planet();
     } else {
       nextPalette = select_palette(random(0, NUM_FX));
     }
@@ -390,15 +257,15 @@ autoDelay programDelay;
 
 // Function to change program from colours to planets periodically (10 mins?)
 
-void switchProgram(){
-  if (programDelay.minutesDelay(PROGRAM_DELAY)){
-  if (solar_system_mode){
-   solar_system_mode = false;
-  } else {
-    solar_sytem_mode = true;
+void switchProgram() {
+  if (programDelay.minutesDelay(PROGRAM_DELAY)) {
+    if (solar_system_mode) {
+      solar_system_mode = false;
+    } else {
+      solar_system_mode = true;
+    }
   }
-  }
-  
+
 }
 
 
@@ -517,10 +384,11 @@ void FillLEDsFromPaletteColors( uint8_t colorIndex) {
 
     }
   }
-  Serial.print("Colour Index: [");
-  Serial.print(colorIndex);
-  Serial.println("]");
-
+  if (PRINT_INDEX) {
+    Serial.print("Colour Index: [");
+    Serial.print(colorIndex);
+    Serial.println("]");
+  }
 }
 
 
