@@ -59,7 +59,7 @@ extern const TProgmemPalette16 myRedWhiteBluePalette_p PROGMEM;
 
 #define SOLAR_SYSTEM true        // When true it overwrites switching and only does solar system mode
 
-#define PRINT_INDEX true
+#define PRINT_INDEX false
 
 bool solar_system_mode = true;
 
@@ -134,30 +134,33 @@ CRGBPalette16 select_planet() {
       Serial.println("Earth");
       break;
     case 3:
+      outputPalette = the_moon;
+      Serial.println("The Moon");
+      break;
+    case 4:
       outputPalette = planet_mars;
       Serial.println("Mars");
       break;
-    case 4:
+    case 5:
       outputPalette = planet_jupiter;
       Serial.println("Jupiter");
       break;
-    case 5:
+    case 6:
       outputPalette = planet_saturn;
       Serial.println("Saturn");
       break;
-    case 6:
+    case 7:
       outputPalette = planet_earth;
       Serial.println("Uranus");
       break;
-    case 7:
+    case 8:
       outputPalette = planet_earth;
       Serial.println("Neptune");
       break;
-    case 8:
+    case 9:
       outputPalette = planet_earth;
       Serial.println("Pluto");
       break;
-
     default:
       Serial.println("Random");
       for ( int i = 0; i < 16; i++) {
@@ -184,27 +187,8 @@ char debugPrint[42];
 
 
 void setup() {
-  Serial.begin(115200);
-  Serial.println("Gathering Spectrum...");
-  delay( 1000 ); // power-up safety delay
-  FastLED.addLeds<LED_TYPE, LED_PIN, COLOR_ORDER>(leds, NUM_LEDS).setCorrection( TypicalLEDStrip );
-  Serial.println("...Processing Light Threads...");
-  FastLED.setBrightness(  BRIGHTNESS );
 
-  randomSeed(analogRead(0));   // psudo random number generator for randomness & chaos
-
-  leds(0, 9) = CHSV(255, 255, 0);
-
-  Serial.println("               Weaving Colours...  \n     ...Selecting Pigments\n");
-  delay(500);
-  Serial.println("Chroma Paintbrush Initialised:  Luminescence Matrix Applied.\n Starting Visual Light Imbument\n ");
-
-  if (SOLAR_SYSTEM) {
-    Serial.println("Launching Interplanetary Voyage");
-  }
-  FastLED.show();
-
-
+  fastled_setup();
 
   currentPalette = START_PALETTE;
   // currentPalette = select_palette(random(0, 5));
@@ -230,21 +214,26 @@ autoDelay shift_effect;
 
 
 
+
+
+
+
+
+bool fadetoblack = false;
+bool fadetocolour = false;
+bool blackpause = false;
+
 uint32_t transition_timer = 45;    // effect transitions are in seconds
 
-
-
 // Cycles through banks of palettes based on program type
-
 void switchPalette() {
   if (shift_effect.secondsDelay(transition_timer)) {
     Serial.println("Fading into New Palette");
     currentPalette = nextPalette;
-
-    if (SOLAR_SYSTEM) {
-      nextPalette = select_planet();
-    } else if (solar_system_mode) {
-      nextPalette = select_planet();
+    if (solar_system_mode or SOLAR_SYSTEM) {
+      fadetoblack = true;     // triggers the apply_fade function
+      nextPalette = select_planet();    // next palette now is not used because crossfading function is removed HOWEVER, we can now fade to black, then place nextPallet into currentPallet before the fade in,
+      // making the crossover seamless
     } else {
       nextPalette = select_palette(random(0, NUM_FX));
     }
@@ -269,8 +258,36 @@ void switchProgram() {
 }
 
 
+#define FADE_BLACK_BY 1
 
+// Fades to black as an intermediary between 2 palettes
+void black_crossfade() {
+  fade_to_black();
+  fade_to_palette();
+}
 
+void fade_to_black() {
+  for (int i = 0; i < 255; i++) {
+    fadeToBlackBy (leds, NUM_LEDS, FADE_BLACK_BY);
+    Serial.print("Fading To Black By: ");
+    Serial.println(i);
+    FastLED.show();
+    delay(2);
+  }
+
+}
+
+void fade_to_palette() {
+
+  FastLED.setBrightness( 0);
+
+  for (int i = 0; i < BRIGHTNESS; i++) {
+    apply_palette();
+    FastLED.setBrightness(i);
+    FastLED.show();
+    delay(2);
+  }
+}
 
 
 /*
@@ -287,26 +304,81 @@ void loop() {
   //  randomise_colour_direction();   // < Dont like the effect this has meant to randomise the direction of the colour wheel, but causes jumps and skips
 
 
-  static uint8_t startIndex = 0;
-  startIndex = startIndex + 1; /* motion speed */
-
 
 
 
   switchPalette();                // Switches colour palette periodically (actually only changes nextPalette, which is blended into currentPalette u
 
 
+  if (solar_system_mode or SOLAR_SYSTEM) {
+    // No blending between palettes, apply fadethrough used instead (although this also can be called for other palettes so is in main loop)
+  } else {
+    nblendPaletteTowardPalette(currentPalette, nextPalette, 12);    // slow blend between palettes
+  }
 
-  nblendPaletteTowardPalette(currentPalette, nextPalette, 12);    // blends next palette into currentPalette
 
+  apply_palette();               //applies palette to LED buffer
 
-  FillLEDsFromPaletteColors(startIndex);
+  apply_fadethrough();               // Changes master brightness in response to fadethrough triggers
 
   FastLED.show();
   FastLED.delay(1000 / UPDATES_PER_SECOND);
 }
 
 
+#define FADE_THROUGH_DELAY 4    // delay time between brightness changes during crossfade through black effect (millis)
+#define PAUSE_BLACK_DELAY 500    // delay time to pause at black between crossfade for cleaner scene change effect
+
+autoDelay fadeBlack;
+
+byte p = 0;    // Global variable used to fade out from max brightness
+
+
+void apply_fadethrough() {
+
+  if (fadetoblack) {
+    if (fadeBlack.millisDelay(FADE_THROUGH_DELAY)) {
+      if (BRIGHTNESS - p >= 0) {
+        FastLED.setBrightness(BRIGHTNESS - p);
+        p++;
+      } else {
+        fadetoblack = false;
+        blackpause = true;
+        currentPalette = nextPalette;              // Nextpalette has been preloaded with the new palette ready for after the fadeout, so we apply that now.
+        p = 0;
+      }
+    }
+
+  } else if (blackpause) {
+    if (fadeBlack.millisDelay(PAUSE_BLACK_DELAY)) {
+      blackpause = false;
+      fadetocolour = true;
+    }
+  } else if (fadetocolour) {
+    if (fadeBlack.millisDelay(FADE_THROUGH_DELAY)) {
+      if (p <= BRIGHTNESS) {
+        FastLED.setBrightness(p);
+        p++;
+      } else {
+        fadetocolour = false;
+        p = 0;
+      }
+    }
+  }
+}
+
+
+
+// Fills led buffer from palette
+void apply_palette() {
+
+  static uint8_t startIndex = 0;
+  startIndex = startIndex + 1; /* motion speed */
+
+  FillLEDsFromPaletteColors(startIndex);
+
+
+}
 
 
 

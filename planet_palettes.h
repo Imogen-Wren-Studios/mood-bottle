@@ -15,32 +15,32 @@
 
 
 DEFINE_GRADIENT_PALETTE( planet_mercury) {
-  0,        255, 190, 0,    /* at index 0, blue(0,0,0) */
-  5,        255,  200, 0,    /* at index 0, blue(0,0,0) */
-  10,       255,  20, 0,    /* at index 0, blue(0,0,0) */
-  15,       255,  100, 0,    /* at index 0, blue(0,0,0) */
-  100,        255,  0, 0,    /* at index 0, blue(0,0,0) */
-  120,       255,  190, 5,    /* at index 0, green(0,0,0) */
-  140,       150,  100, 0,    /* at index 0, green(0,0,0) */
-  150,     255,  190,  0,    /* at index 0, blue(0,0,0) */
-  200,     250,  20,  0,    /* at index 0, green(0,0,0) */
+  0,        169, 136, 25,    /* at index 0, blue(0,0,0) */
+  5,        182,  155, 25,    /* at index 0, blue(0,0,0) */
+  10,          239, 231, 40,  /* at index 0, blue(0,0,0) */
+  15,         169, 136, 25,  /* at index 0, blue(0,0,0) */
+  100,        221,  197, 35,   /* at index 0, blue(0,0,0) */
+  120,       221, 200, 35,    /* at index 0, green(0,0,0) */
+  140,      163, 125, 25,    /* at index 0, green(0,0,0) */
+  150,    178, 135, 24,    /* at index 0, blue(0,0,0) */
+  200,    105, 70, 13,    /* at index 0, green(0,0,0) */
   220,     150,  50,  0,    /* at index 0, green(0,0,0) */
   235,      139,  75, 1,    /* at index 0, desertbrown(0,0,0) */
-  240,        0,  0, 0,       /* at index 0, desertbrown(0,0,0) */       // last entry must be for index 255
-  245,    145,  60,    0, /* at index 255, desertbright(255,255,255) */
-  255,    50,  50,   0   /* at index 0, blue(0,0,0) */       // last entry must be for index 255
+  240,      188, 144, 10,       /* at index 0, desertbrown(0,0,0) */       // last entry must be for index 255
+  245,   77, 74, 12, /* at index 255, desertbright(255,255,255) */
+  255,    28, 27, 5 /* at index 0, blue(0,0,0) */       // last entry must be for index 255
 };
 
 
 DEFINE_GRADIENT_PALETTE( planet_venus) {
-  0,        190, 190, 170,    /* at index 0, blue(0,0,0) */
-  5,        230,  200, 100,    /* at index 0, blue(0,0,0) */
-  10,       230,  200, 20,    /* at index 0, blue(0,0,0) */
-  15,       150,  120, 90,    /* at index 0, blue(0,0,0) */
-  100,        70,  50, 40,    /* at index 0, blue(0,0,0) */
-  120,       220,  190, 150,    /* at index 0, green(0,0,0) */
-  140,       150,  100, 50,    /* at index 0, green(0,0,0) */
-  150,     200,  190,  40,    /* at index 0, blue(0,0,0) */
+  0,        190, 190, 120,    /* at index 0, blue(0,0,0) */
+  5,        230,  200, 70,    /* at index 0, blue(0,0,0) */
+  10,       230,  200, 10,    /* at index 0, blue(0,0,0) */
+  15,       150,  120, 70,    /* at index 0, blue(0,0,0) */
+  110,        70,  50, 30,    /* at index 0, blue(0,0,0) */
+  120,       220,  190, 130,    /* at index 0, green(0,0,0) */
+  140,       150,  100, 40,    /* at index 0, green(0,0,0) */
+  150,     200,  190,  20,    /* at index 0, blue(0,0,0) */
   200,     250, 70,  0,    /* at index 0, green(0,0,0) */
   210,     150,  100,  0,    /* at index 0, green(0,0,0) */
   235,      140,  65, 1,    /* at index 0, desertbrown(0,0,0) */
@@ -53,22 +53,40 @@ DEFINE_GRADIENT_PALETTE( planet_venus) {
 
 
 DEFINE_GRADIENT_PALETTE( planet_earth) {
-  0,        0,  0, 255,    /* at index 0, blue(0,0,0) */
-  5,        0,  200, 255,    /* at index 0, blue(0,0,0) */
-  10,       255,  255, 255,    /* at index 0, blue(0,0,0) */
-  15,        0,  0, 255,    /* at index 0, blue(0,0,0) */
-  100,        0,  100, 255,    /* at index 0, blue(0,0,0) */
-  120,       0,  255, 0,    /* at index 0, green(0,0,0) */
-  140,       100,  255, 0,    /* at index 0, green(0,0,0) */
-  150,     0,  255,  150,    /* at index 0, blue(0,0,0) */
-  200,     0,  255,  0,    /* at index 0, green(0,0,0) */
-  220,     150,  255,  0,    /* at index 0, green(0,0,0) */
-  235,        139,  75, 1,    /* at index 0, desertbrown(0,0,0) */
-  240,    139,  75, 15,       /* at index 0, desertbrown(0,0,0) */       // last entry must be for index 255
-  245,    255,  200,    0, /* at index 255, desertbright(255,255,255) */
-  255,    0,  100,   255   /* at index 0, blue(0,0,0) */       // last entry must be for index 255
+  0,        19, 21, 255,    /* at index 0, blue(0,0,0) */
+  5,       109, 181, 255,    /* at index 0, blue(0,0,0) */
+  10,       255,  255, 255,    /* at index 0, cloud(0,0,0) */
+  15,        109, 130, 255,   /* at index 0, blue(0,0,0) */
+  100,       119, 255, 20,    /* at index 0, landgreen(0,0,0) */
+  120,       62, 255, 28,    /* at index 0, green(0,0,0) */
+  140,       230, 235, 40,    /* at index 0, desert(0,0,0) */
+  150,     193, 158, 10,    /* at index 0, orangedesert(0,0,0) */
+  200,    24, 30, 234,    /* at index 0, dark sea(0,0,0) */
+  220,    100, 100, 20,  /* at index 0, darkland(0,0,0) */
+  235,        11, 14, 17,    /* at index 0, desertbrown(0,0,0) */
+  240,   8, 11, 19,       /* at index 0, nighttime(0,0,0) */       // last entry must be for index 255
+  245,    241, 215, 178, /* at index 255, lights@night(255,255,255) */
+  255,    64, 77, 109   /* at index 0, darkblue(0,0,0) */       // last entry must be for index 255
 };
 
+
+
+DEFINE_GRADIENT_PALETTE( the_moon) {
+  0,        0,  0, 0,    /* at index 0, blue(0,0,0) */
+  5,        100,  100, 100,    /* at index 0, blue(0,0,0) */
+  10,       20,  20, 20,    /* at index 0, blue(0,0,0) */
+  15,        255,  255, 255,    /* at index 0, blue(0,0,0) */
+  100,        50,  50, 50,    /* at index 0, blue(0,0,0) */
+  120,       200,  200, 200,    /* at index 0, green(0,0,0) */
+  140,       0,  0, 0,    /* at index 0, green(0,0,0) */
+  150,     20,  20,  20,    /* at index 0, blue(0,0,0) */
+  200,     200,  200,  200,    /* at index 0, green(0,0,0) */
+  220,     150,  150,  150,    /* at index 0, green(0,0,0) */
+  235,        10,  10, 10,    /* at index 0, desertbrown(0,0,0) */
+  240,    255,  255, 255,       /* at index 0, desertbrown(0,0,0) */       // last entry must be for index 255
+  245,    200,  200,    200, /* at index 255, desertbright(255,255,255) */
+  255,    1,  1,   1   /* at index 0, blue(0,0,0) */       // last entry must be for index 255
+};
 
 
 
@@ -101,12 +119,12 @@ DEFINE_GRADIENT_PALETTE( planet_jupiter) {
   70,        205,   191,    40,      //sand 4
   73,       130,    127,     125,     // clouds or grey_clouds (very thin) 5
   78,       255,    106,     2,      // reddish_dust (medium thin) 6
- 90,       250,    160,     13,    // dirty_orange (thicc) 7
- 140,       228,   181,    20,     //sand (thin) 8
+  90,       250,    160,     13,    // dirty_orange (thicc) 7
+  140,       228,   181,    20,     //sand (thin) 8
   160,       200,   87,     20,       //mud (thin) 9
-   180,      223,   140,   20,      // tan_suit (mid thin) 10
+  180,      223,   140,   20,      // tan_suit (mid thin) 10
   190,       255,   10,     0,      // red_dot (thin) 11
-    194,      150,    100,   2,       // gravel  (thick) 13
+  194,      150,    100,   2,       // gravel  (thick) 13
   197,      137,    135,     120,     // clouds (thin) 12
   202,        202,  140,   20,        // tan suit 14
   255,      131,   87,    20         // mud (thin) 15
@@ -123,10 +141,10 @@ DEFINE_GRADIENT_PALETTE(planet_saturn) {
   70,        228,   214,    20,      //sand 4
   73,       233,    233,     221,     // clouds or grey_clouds (very thin) 5
   75,       245,    106,     2,      // reddish_dust (medium thin) 6
- 80,       220,    160,     13,    // dirty_orange (thicc) 7
- 120,       228,   214,    20,     //sand (thin) 8
+  80,       220,    160,     13,    // dirty_orange (thicc) 7
+  120,       228,   214,    20,     //sand (thin) 8
   180,       131,   87,     20,       //mud (thin) 9
-   190,      202,   194,   20,      // tan_suit (mid thin) 10
+  190,      202,   194,   20,      // tan_suit (mid thin) 10
   192,       255,   50,     20,      // red_dot (thin) 11
   195,      233,    233,     221,     // clouds (thin) 12
   200,      166,    134,   2,       // gravel  (thick) 13
@@ -143,13 +161,20 @@ DEFINE_GRADIENT_PALETTE( colour_tester) {
   255,    139,  75, 15       /* at index 0, blue(0,0,0) */       // last entry must be for index 255
 };
 
+
+DEFINE_GRADIENT_PALETTE( black_black) {
+  0,        0,  0, 0,    /* at index 0, blue(0,0,0) */
+
+  255,    0,  0, 0      /* at index 0, blue(0,0,0) */       // last entry must be for index 255
+};
+
 // add a macro to DEFINE_HSV_GRADIENT_PALETTE
 
-#define START_PALETTE planet_jupiter
+#define START_PALETTE planet_earth
 
 
 /* Not controlable enough Shame
-CRGBPalette16 planet_jupiter() {
+  CRGBPalette16 planet_jupiter() {
 
   CRGB cloud  = CHSV( 0, 0, 255);
   CRGB grey_cloud = CHSV( 0, 0, 110);
@@ -165,13 +190,13 @@ CRGBPalette16 planet_jupiter() {
 
   CRGB red_spot = CHSV( 0, 189, 181);
 
-CRGBPalette16 output =  CRGBPalette16( mud,  dirty_orange,  gravel,  tan_suit,
+  CRGBPalette16 output =  CRGBPalette16( mud,  dirty_orange,  gravel,  tan_suit,
                      cloud, sand, sand,  reddish_dust,
                      dirty_orange,  mud,  sand,  grey_cloud,
                      golden, sand, red_spot,  mud);
-  
- return output;
+
+  return output;
 
 
-}
+  }
 */
