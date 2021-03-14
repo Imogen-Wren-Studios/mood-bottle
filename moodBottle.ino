@@ -57,11 +57,24 @@ extern const TProgmemPalette16 myRedWhiteBluePalette_p PROGMEM;
 
 #define NUM_FX 9
 
-#define SOLAR_SYSTEM true        // When true it overwrites switching and only does solar system mode
+uint32_t transition_timer = 45;    // effect transitions are in seconds
+
+#define SOLAR_SYSTEM false       // When true it overwrites switching and only does solar system mode
+bool solar_system_mode = true;     // Sets solar system or not mode (switches automatically)
+#define RANDOMISE_DIRECTION true
+#define START_PALETTE the_sun
+//#define START_PALETTE select_palette(random(0, NUM_FX));
 
 #define PRINT_INDEX false
+#define DEBUG_DELAY false
+#define DEBUG_DELAY_TIME 300
 
-bool solar_system_mode = true;
+#define FADE_THROUGH_DELAY 4    // delay time between brightness changes during crossfade through black effect (millis)
+#define PAUSE_BLACK_DELAY 500    // delay time to pause at black between crossfade for cleaner scene change effect
+
+#define PROGRAM_DELAY 10   // Delay to switch progams in minuites
+
+
 
 CRGBPalette16 select_palette(byte number) {
 
@@ -173,6 +186,8 @@ CRGBPalette16 select_planet() {
 
   if (current_planet >= 9) {
     current_planet = 0;
+    solar_system_mode = false;    // Once we have finished our flight around the solar system, return to colour palletes
+    
   }
   return outputPalette;
 }
@@ -223,7 +238,7 @@ bool fadetoblack = false;
 bool fadetocolour = false;
 bool blackpause = false;
 
-uint32_t transition_timer = 45;    // effect transitions are in seconds
+
 
 // Cycles through banks of palettes based on program type
 void switchPalette() {
@@ -242,7 +257,7 @@ void switchPalette() {
 
 autoDelay programDelay;
 
-#define PROGRAM_DELAY 10   // Delay to switch progams in minuites
+
 
 // Function to change program from colours to planets periodically (10 mins?)
 
@@ -250,59 +265,30 @@ void switchProgram() {
   if (programDelay.minutesDelay(PROGRAM_DELAY)) {
     if (solar_system_mode) {
       solar_system_mode = false;
+      Serial.print("Colour Palette Mode");
     } else {
       solar_system_mode = true;
+      Serial.print("Solar System Mode");
     }
   }
 
 }
 
 
-#define FADE_BLACK_BY 1
-
-// Fades to black as an intermediary between 2 palettes
-void black_crossfade() {
-  fade_to_black();
-  fade_to_palette();
-}
-
-void fade_to_black() {
-  for (int i = 0; i < 255; i++) {
-    fadeToBlackBy (leds, NUM_LEDS, FADE_BLACK_BY);
-    Serial.print("Fading To Black By: ");
-    Serial.println(i);
-    FastLED.show();
-    delay(2);
-  }
-
-}
-
-void fade_to_palette() {
-
-  FastLED.setBrightness( 0);
-
-  for (int i = 0; i < BRIGHTNESS; i++) {
-    apply_palette();
-    FastLED.setBrightness(i);
-    FastLED.show();
-    delay(2);
-  }
-}
 
 
-/*
-    Change in paradigm
-
-      - Program is always "Transitioning" from one to another, it seems to take less than 1min to transition
-      so each effect will cycle for at least 2 mins
 
 
-*/
+
+
 
 void loop() {
-  randomise_led_directions();    // Changes the direction the LEDs are painted in
-  //  randomise_colour_direction();   // < Dont like the effect this has meant to randomise the direction of the colour wheel, but causes jumps and skips
 
+
+  if (RANDOMISE_DIRECTION ) {
+    randomise_led_directions();    // Changes the direction the LEDs are painted in
+    //  randomise_colour_direction();   // < Dont like the effect this has meant to randomise the direction of the colour wheel, but causes jumps and skips
+  }
 
 
 
@@ -323,11 +309,13 @@ void loop() {
 
   FastLED.show();
   FastLED.delay(1000 / UPDATES_PER_SECOND);
+
+  if (DEBUG_DELAY) {
+    delay(DEBUG_DELAY_TIME);
+  }
 }
 
 
-#define FADE_THROUGH_DELAY 4    // delay time between brightness changes during crossfade through black effect (millis)
-#define PAUSE_BLACK_DELAY 500    // delay time to pause at black between crossfade for cleaner scene change effect
 
 autoDelay fadeBlack;
 
@@ -373,7 +361,7 @@ void apply_fadethrough() {
 void apply_palette() {
 
   static uint8_t startIndex = 0;
-  startIndex = startIndex + 1; /* motion speed */
+  startIndex = startIndex + 1;        /* motion speed */
 
   FillLEDsFromPaletteColors(startIndex);
 
