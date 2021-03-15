@@ -7,8 +7,8 @@
 
 
 #define LED_PIN     5
-#define NUM_LEDS    9
-#define BRIGHTNESS  100
+#define NUM_LEDS    8
+#define BRIGHTNESS  255
 #define LED_TYPE    WS2811
 #define COLOR_ORDER GRB
 CRGBArray <NUM_LEDS> leds;
@@ -37,13 +37,7 @@ CRGBArray <NUM_LEDS> leds;
 #include "planet_palettes.h"
 
 
-CRGBPalette16 currentPalette;
-TBlendType    currentBlending;
-
-
-CRGBPalette16 nextPalette;
-//TBlendType    currentBlending;
-
+#include "globals.h"
 
 extern CRGBPalette16 myRedWhiteBluePalette;
 extern const TProgmemPalette16 myRedWhiteBluePalette_p PROGMEM;
@@ -55,146 +49,41 @@ extern const TProgmemPalette16 myRedWhiteBluePalette_p PROGMEM;
 
 
 
-#define NUM_FX 9
 
 uint32_t transition_timer = 45;    // effect transitions are in seconds
 
 #define SOLAR_SYSTEM false       // When true it overwrites switching and only does solar system mode
-bool solar_system_mode = true;     // Sets solar system or not mode (switches automatically)
+
 #define RANDOMISE_DIRECTION true
-#define START_PALETTE the_sun
+#define START_PALETTE ceres      // Sterile while palette to start with
 //#define START_PALETTE select_palette(random(0, NUM_FX));
 
 #define PRINT_INDEX false
 #define DEBUG_DELAY false
 #define DEBUG_DELAY_TIME 300
 
-#define FADE_THROUGH_DELAY 4    // delay time between brightness changes during crossfade through black effect (millis)
-#define PAUSE_BLACK_DELAY 500    // delay time to pause at black between crossfade for cleaner scene change effect
+#define FADE_THROUGH_DELAY 6   // delay time between brightness changes during crossfade through black effect (millis)
+#define PAUSE_BLACK_DELAY 1000    // delay time to pause at black between crossfade for cleaner scene change effect
 
 #define PROGRAM_DELAY 10   // Delay to switch progams in minuites
 
 
-
-CRGBPalette16 select_palette(byte number) {
-
-  CRGBPalette16 outputPalette;
+uint16_t minutes_running;
 
 
-  switch (number) {
-    case 0:
-      outputPalette = tropicalPalette;
-      Serial.println("Tropical");
-      break;
-    case 1:
-      outputPalette = raggaPalette;
-      Serial.println("Ragga");
-      break;
-    case 2:
-      outputPalette = transPalette;
-      Serial.println("Trans");
-      break;
-    case 3:
-      outputPalette = biPalette;
-      Serial.println("Bi");
-      break;
-    case 4:
-      outputPalette = orange_white;
-      Serial.println("Orange/White");
-      break;
-    case 5:
-      outputPalette = all_blue;
-      Serial.println("All Blue");
-      break;
-    case 6:
-      outputPalette = green_white;
-      Serial.println("Green/White");
-      break;
-    case 7:
-      outputPalette = planet_earth;
-      Serial.println("Planet Earth");
-      break;
-    default:
-      Serial.println("Random");
-      for ( int i = 0; i < 16; i++) {
-        outputPalette[i] = CHSV( random8(), 255, random8());
-      }
-      break;
-  }
-  //return green_white;
-  return outputPalette;
+void print_uptime() {
+
+  char clockString[48];
+  uint32_t seconds_running = (millis() / 1000);
+  minutes_running = (seconds_running / 60);
+  uint16_t  hours_running = (minutes_running / 60);
+  minutes_running = minutes_running - (hours_running * 60);
+  seconds_running = seconds_running - ((minutes_running * 60) + (hours_running * 3600));
+  sprintf(clockString, "Uptime: [%02i]:[%02i]:[%02i]", hours_running, minutes_running, seconds_running);
+
+  Serial.println(clockString);
+
 }
-
-
-byte current_planet = 0;
-
-CRGBPalette16 select_planet() {
-
-  CRGBPalette16 outputPalette;
-
-
-  switch (current_planet) {
-    case 0:
-      outputPalette = planet_mercury;
-      Serial.println("Mercury");
-      break;
-    case 1:
-      outputPalette = planet_venus;
-      Serial.println("Venus");
-      break;
-    case 2:
-      outputPalette = planet_earth;
-      Serial.println("Earth");
-      break;
-    case 3:
-      outputPalette = the_moon;
-      Serial.println("The Moon");
-      break;
-    case 4:
-      outputPalette = planet_mars;
-      Serial.println("Mars");
-      break;
-    case 5:
-      outputPalette = planet_jupiter;
-      Serial.println("Jupiter");
-      break;
-    case 6:
-      outputPalette = planet_saturn;
-      Serial.println("Saturn");
-      break;
-    case 7:
-      outputPalette = planet_earth;
-      Serial.println("Uranus");
-      break;
-    case 8:
-      outputPalette = planet_earth;
-      Serial.println("Neptune");
-      break;
-    case 9:
-      outputPalette = planet_earth;
-      Serial.println("Pluto");
-      break;
-    default:
-      Serial.println("Random");
-      for ( int i = 0; i < 16; i++) {
-        outputPalette[i] = CHSV( random8(), 255, random8());
-      }
-      break;
-  }
-  //return green_white;
-  current_planet++;
-
-  if (current_planet >= 9) {
-    current_planet = 0;
-    solar_system_mode = false;    // Once we have finished our flight around the solar system, return to colour palletes
-    
-  }
-  return outputPalette;
-}
-
-
-
-
 
 
 
@@ -222,57 +111,9 @@ void setup() {
 
 
 
-autoDelay shift_effect;
 
 
 
-
-
-
-
-
-
-
-
-bool fadetoblack = false;
-bool fadetocolour = false;
-bool blackpause = false;
-
-
-
-// Cycles through banks of palettes based on program type
-void switchPalette() {
-  if (shift_effect.secondsDelay(transition_timer)) {
-    Serial.println("Fading into New Palette");
-    currentPalette = nextPalette;
-    if (solar_system_mode or SOLAR_SYSTEM) {
-      fadetoblack = true;     // triggers the apply_fade function
-      nextPalette = select_planet();    // next palette now is not used because crossfading function is removed HOWEVER, we can now fade to black, then place nextPallet into currentPallet before the fade in,
-      // making the crossover seamless
-    } else {
-      nextPalette = select_palette(random(0, NUM_FX));
-    }
-  }
-}
-
-autoDelay programDelay;
-
-
-
-// Function to change program from colours to planets periodically (10 mins?)
-
-void switchProgram() {
-  if (programDelay.minutesDelay(PROGRAM_DELAY)) {
-    if (solar_system_mode) {
-      solar_system_mode = false;
-      Serial.print("Colour Palette Mode");
-    } else {
-      solar_system_mode = true;
-      Serial.print("Solar System Mode");
-    }
-  }
-
-}
 
 
 
@@ -290,7 +131,7 @@ void loop() {
     //  randomise_colour_direction();   // < Dont like the effect this has meant to randomise the direction of the colour wheel, but causes jumps and skips
   }
 
-
+  switchProgram();
 
 
   switchPalette();                // Switches colour palette periodically (actually only changes nextPalette, which is blended into currentPalette u
@@ -313,145 +154,19 @@ void loop() {
   if (DEBUG_DELAY) {
     delay(DEBUG_DELAY_TIME);
   }
-}
-
-
-
-autoDelay fadeBlack;
-
-byte p = 0;    // Global variable used to fade out from max brightness
-
-
-void apply_fadethrough() {
-
-  if (fadetoblack) {
-    if (fadeBlack.millisDelay(FADE_THROUGH_DELAY)) {
-      if (BRIGHTNESS - p >= 0) {
-        FastLED.setBrightness(BRIGHTNESS - p);
-        p++;
-      } else {
-        fadetoblack = false;
-        blackpause = true;
-        currentPalette = nextPalette;              // Nextpalette has been preloaded with the new palette ready for after the fadeout, so we apply that now.
-        p = 0;
-      }
-    }
-
-  } else if (blackpause) {
-    if (fadeBlack.millisDelay(PAUSE_BLACK_DELAY)) {
-      blackpause = false;
-      fadetocolour = true;
-    }
-  } else if (fadetocolour) {
-    if (fadeBlack.millisDelay(FADE_THROUGH_DELAY)) {
-      if (p <= BRIGHTNESS) {
-        FastLED.setBrightness(p);
-        p++;
-      } else {
-        fadetocolour = false;
-        p = 0;
-      }
-    }
-  }
-}
-
-
-
-// Fills led buffer from palette
-void apply_palette() {
-
-  static uint8_t startIndex = 0;
-  startIndex = startIndex + 1;        /* motion speed */
-
-  FillLEDsFromPaletteColors(startIndex);
 
 
 }
 
 
 
-// Elements to change things at different times for randomness
-
-autoDelay hueShiftDelay;
-
-int hue_steps = 3;
-uint32_t hue_shift_timing = 5000;
 
 
-void randomise_colour_direction() {
-  if (hueShiftDelay.millisDelay(hue_shift_timing)) {
-    hue_steps = random(-10, 10);
-    //  sprintf(debugPrint, "hue_steps: [%i]", hue_steps);
-    //  Serial.println(debugPrint);
-  }
-
-}
+/*   EXAMPLES AND NOTES
 
 
 
-autoDelay directionDelay;   // Controls the delay between rolling dice on a direction change
-
-uint32_t direction_timing = 5000;
-
-bool ledDirection = true;         // Sets the LEDs to update in a positive direction if true, or reverse direction if false
-
-
-void randomise_led_directions() {
-  if (directionDelay.millisDelay(direction_timing)) {    // if delay time is up,
-    byte diceRoll = random(0, 5);                               // Roll the dice
-    Serial.print("Roll Dice: [");
-    Serial.print(diceRoll);
-    Serial.println("]");
-    if (diceRoll < 1) {                                     // if less than 2, //do nothing
-      //   Serial.println("Dice Roll Failed, Direction Unchanged");
-    } else {
-      if (ledDirection) {
-        ledDirection = false;
-        //  Serial.println("LED Direction Backwards");
-      } else {
-        ledDirection = true;                                 // Else Change the directions
-        //  Serial.println("LED Direction Forwards.");
-      }
-
-    }
-    // Function here to randomise direction_timing
-    direction_timing = random(500, 15000);                       // Randomise changing direction again from between 0.5s to 10s
-    //  sprintf(debugPrint, "Direction Timing: [%u]", direction_timing);
-    //Serial.println(debugPrint);
-
-    // Serial.println(debugPrint);
-  }
-}
-
-
-
-
-
-
-// Utilities
-
-void FillLEDsFromPaletteColors( uint8_t colorIndex) {
-
-  if (ledDirection) {
-    for ( int i = 0; i < NUM_LEDS; i++) {
-      leds[i] = ColorFromPalette( currentPalette, colorIndex, BRIGHTNESS, currentBlending);
-      colorIndex += hue_steps;
-    }
-  } else {                                                                                              // Same for loop as before but runs in reverse order
-    for ( int i = NUM_LEDS; i >= 0; i--) {
-      leds[i] = ColorFromPalette( currentPalette, colorIndex, BRIGHTNESS, currentBlending);
-      colorIndex += hue_steps;
-
-    }
-  }
-  if (PRINT_INDEX) {
-    Serial.print("Colour Index: [");
-    Serial.print(colorIndex);
-    Serial.println("]");
-  }
-}
-
-
+*/
 
 // nblendPaletteTowardPalette:
 //               Alter one palette by making it slightly more like
@@ -574,15 +289,6 @@ void ChangePalettePeriodically() {
 
 
 
-
-
-
-// This function fills the palette with totally random colors.
-void SetupTotallyRandomPalette() {
-  for ( int i = 0; i < 16; i++) {
-    currentPalette[i] = CHSV( random8(), 255, 255);
-  }
-}
 
 
 

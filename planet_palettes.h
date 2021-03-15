@@ -10,6 +10,8 @@
 
 
 */
+#ifndef planet_palettes_h
+#define planet_palettes_h
 
 
 
@@ -61,7 +63,7 @@ DEFINE_GRADIENT_PALETTE( planet_venus) {
   200,     250, 70,  0,    /* at index 0, green(0,0,0) */
   210,     150,  100,  0,    /* at index 0, green(0,0,0) */
   235,      140,  65, 1,    /* at index 0, desertbrown(0,0,0) */
-  240,        0,  0, 0,       /* at index 0, desertbrown(0,0,0) */       // last entry must be for index 255
+  240,        30,  30, 0,       /* at index 0, desertbrown(0,0,0) */       // last entry must be for index 255
   245,    145,  120,    30, /* at index 255, desertbright(255,255,255) */
   255,    60,  50,   50   /* at index 0, blue(0,0,0) */       // last entry must be for index 255
 };
@@ -84,8 +86,8 @@ DEFINE_GRADIENT_PALETTE( planet_earth) {
   213,    24, 30, 234,    /* at index 0, dark sea(0,0,0) */
   224,     0, 0, 0,    /* at index 0, Night(0,0,0) */
   233,     50, 50, 0,       /* at index 0, Lights @ Night(0,0,0) */      // last entry must be for index 255
-  240,    0, 0, 0, /* at index 255, ight(255,255,255) */
-  255,    0, 0, 0   /* at index 0, sunrise(0,0,0) */       // last entry must be for index 255
+  240,    0, 0, 20, /* at index 255, ight(255,255,255) */
+  255,   0, 21, 40,   /* at index 0, sunrise(0,0,0) */       // last entry must be for index 255
 };
 
 
@@ -253,6 +255,91 @@ DEFINE_GRADIENT_PALETTE( black_black) {
   255,    0,  0, 0      /* at index 0, blue(0,0,0) */       // last entry must be for index 255
 };
 
+
+
+// Function to call planet palettes
+
+
+
+byte current_planet = 0;
+
+CRGBPalette16 select_planet() {
+
+  CRGBPalette16 outputPalette;
+
+
+  switch (current_planet) {
+    case 0:
+      outputPalette = the_sun;
+      Serial.println("The Sun");
+      Serial.println("Entering Heliocentric Orbit");
+      break;
+    case 1:
+      outputPalette = planet_mercury;
+      Serial.println("Mercury");
+      break;
+    case 2:
+      outputPalette = planet_venus;
+      Serial.println("Venus");
+      break;
+    case 3:
+      outputPalette = planet_earth;
+      Serial.println("Earth");
+      break;
+    case 4:
+      outputPalette = the_moon;
+      Serial.println("The Moon");
+      break;
+    case 5:
+      outputPalette = planet_mars;
+      Serial.println("Mars");
+      break;
+    case 6:
+      outputPalette = planet_jupiter;
+      Serial.println("Jupiter");
+      break;
+    case 7:
+      outputPalette = planet_saturn;
+      Serial.println("Saturn");
+      break;
+    case 8:
+      outputPalette = planet_uranus;
+      Serial.println("Uranus");
+      break;
+    case 9:
+      outputPalette = planet_neptune;
+      Serial.println("Neptune");
+      break;
+    case 10:
+      outputPalette = planet_pluto;
+      Serial.println("Pluto");
+      break;
+    default:
+      Serial.println("Random");
+      for ( int i = 0; i < 16; i++) {
+        outputPalette[i] = CHSV( random8(), 255, random8());
+      }
+      break;
+  }
+  //return green_white;
+  current_planet++;
+
+  if (current_planet >= 12) {
+    current_planet = 0;
+    solar_system_mode = false;    // Once we have finished our flight around the solar system, return to colour palletes
+    Serial.println("Colour Palette Mode");
+
+  }
+  return outputPalette;
+}
+
+
+
+
+
+
+
+
 // add a macro to DEFINE_HSV_GRADIENT_PALETTE
 
 
@@ -286,3 +373,6 @@ DEFINE_GRADIENT_PALETTE( black_black) {
 
   }
 */
+
+
+#endif
