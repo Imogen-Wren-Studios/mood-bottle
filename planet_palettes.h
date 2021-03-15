@@ -47,7 +47,7 @@ DEFINE_GRADIENT_PALETTE( planet_mercury) {
   235,      139,  75, 1,    /* at index 0, desertbrown(0,0,0) */
   240,      188, 144, 10,       /* at index 0, desertbrown(0,0,0) */       // last entry must be for index 255
   245,   77, 74, 12, /* at index 255, desertbright(255,255,255) */
-  255,    28, 27, 5 /* at index 0, blue(0,0,0) */       // last entry must be for index 255
+  255,    66, 54, 10 /* at index 0, blue(0,0,0) */       // last entry must be for index 255
 };
 
 
@@ -65,7 +65,7 @@ DEFINE_GRADIENT_PALETTE( planet_venus) {
   235,      140,  65, 1,    /* at index 0, desertbrown(0,0,0) */
   240,        30,  30, 0,       /* at index 0, desertbrown(0,0,0) */       // last entry must be for index 255
   245,    145,  120,    30, /* at index 255, desertbright(255,255,255) */
-  255,    60,  50,   50   /* at index 0, blue(0,0,0) */       // last entry must be for index 255
+  255,    120,  100,   100  /* at index 0, blue(0,0,0) */       // last entry must be for index 255
 };
 
 
@@ -157,17 +157,17 @@ DEFINE_GRADIENT_PALETTE( planet_jupiter) {
 DEFINE_GRADIENT_PALETTE(planet_saturn) {
   0,         131,   87,    20,     // mud   0
   40,        166,    134,    20 ,    //gravel 1
-  42,         207,    140,   20 ,      // dirty orange (very thin) 2
-  45,        202,   194,   20,    //tan_suit 3
+  50,         207,    140,   20 ,      // dirty orange (very thin) 2
+  60,        202,   194,   20,    //tan_suit 3
   70,        228,   214,    20,      //sand 4
-  73,       233,    233,     221,     // clouds or grey_clouds (very thin) 5
-  75,       245,    106,     2,      // reddish_dust (medium thin) 6
-  80,       220,    160,     13,    // dirty_orange (thicc) 7
-  120,       228,   214,    20,     //sand (thin) 8
-  180,       131,   87,     20,       //mud (thin) 9
-  190,      202,   194,   20,      // tan_suit (mid thin) 10
-  192,       255,   50,     20,      // red_dot (thin) 11
-  195,      233,    233,     221,     // clouds (thin) 12
+  80,       233,    233,     221,     // clouds or grey_clouds (very thin) 5
+  90,       245,    106,     2,      // reddish_dust (medium thin) 6
+  100,       220,    160,     13,    // dirty_orange (thicc) 7
+  150,       228,   214,    20,     //sand (thin) 8
+  160,       131,   87,     20,       //mud (thin) 9
+  170,      202,   194,   20,      // tan_suit (mid thin) 10
+  180,       255,   50,     20,      // red_dot (thin) 11
+  190,      233,    233,     221,     // clouds (thin) 12
   200,      166,    134,   2,       // gravel  (thick) 13
   235,        202,   194,   20,        // tan suit 14
   255,      131,   87,    20         // mud (thin) 15

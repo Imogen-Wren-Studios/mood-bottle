@@ -87,17 +87,20 @@ DEFINE_GRADIENT_PALETTE( hotpink_blue ) {
 
 
 
-DEFINE_GRADIENT_PALETTE( ceres ) {
-  0,        0,  0, 0,    /* at index 0, orange(0,0,0) */
-  50,       0,  0, 0,    /* at index 0, orange(0,0,0) */
+DEFINE_GRADIENT_PALETTE( white_light ) {
+  0,        100, 100, 100,    /* at index 0, orange(0,0,0) */
+  50,       40,  40, 40,    /* at index 0, orange(0,0,0) */
   100,       0,  0, 0,    /* at index 0, orange(0,0,0) */
   120,       255,  255, 255,    /* at index 0, orange(0,0,0) */
-  140,       0,  0, 0,    /* at index 0, orange(0,0,0) */
-  150,     0,  0,  0,    /* at index 0, orange(0,0,0) */
+  140,       5,  5, 5,    /* at index 0, orange(0,0,0) */
+  150,     150,  150,  150,    /* at index 0, orange(0,0,0) */
   170,    255,  255,  255, /* at index 255, white(255,255,255) */
-  190,    0,  0,  0, /* at index 255, white(255,255,255) */
-  255,    0,  0,   0   /* at index 0, orange(0,0,0) */       // last entry must be for index 255
+  190,    10,  10,  10, /* at index 255, white(255,255,255) */
+  255,    255,  255,  255   /* at index 0, orange(0,0,0) */       // last entry must be for index 255
 };
+
+
+
 
 // This function fills the palette with totally random colors.
 void SetupTotallyRandomPalette() {

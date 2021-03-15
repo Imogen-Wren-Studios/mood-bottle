@@ -24,17 +24,19 @@ bool blackpause = false;
 
 
 
-byte p = 0;    // Global variable used to fade out from max brightness
+int16_t p = 0;    // Global variable used to fade out from max brightness
 
 
 void apply_fadethrough() {
 
   if (fadetoblack) {
+    //  Serial.println("Fading To Black");
     if (fadeBlack.millisDelay(FADE_THROUGH_DELAY)) {
       if (BRIGHTNESS - p >= 0) {
         FastLED.setBrightness(BRIGHTNESS - p);
         p++;
       } else {
+
         fadetoblack = false;
         blackpause = true;
         currentPalette = nextPalette;              // Nextpalette has been preloaded with the new palette ready for after the fadeout, so we apply that now.
@@ -43,11 +45,13 @@ void apply_fadethrough() {
     }
 
   } else if (blackpause) {
+    //   Serial.println("Black Pause");
     if (fadeBlack.millisDelay(PAUSE_BLACK_DELAY)) {
       blackpause = false;
       fadetocolour = true;
     }
   } else if (fadetocolour) {
+    //  Serial.println("Fade to Colour");
     if (fadeBlack.millisDelay(FADE_THROUGH_DELAY)) {
       if (p <= BRIGHTNESS) {
         FastLED.setBrightness(p);
@@ -63,8 +67,7 @@ void apply_fadethrough() {
 
 
 
-
-
+uint8_t startIndex = 0;
 
 
 int16_t index_addr = 1;
@@ -73,8 +76,8 @@ int16_t index_addr = 1;
 // Fills led buffer from palette
 void apply_palette() {
 
-  static uint8_t startIndex = 0;
-  startIndex = startIndex + index_addr;        /* motion speed */
+
+  startIndex = startIndex + 1;        /* motion speed */
 
   FillLEDsFromPaletteColors(startIndex);
 
@@ -138,7 +141,7 @@ void randomise_led_directions() {
         ledDirection = true;                                 // Else Change the directions
         //  Serial.println("LED Direction Forwards.");
       }
-
+      startIndex = startIndex - NUM_LEDS;
     }
     // Function here to randomise direction_timing
     direction_timing = random(500, 15000);                       // Randomise changing direction again from between 0.5s to 10s
@@ -193,6 +196,7 @@ void switchProgram() {
       //  Serial.print("Colour Palette Mode");
     } else {
       solar_system_mode = true;
+      current_planet = 0;     // reset current planet to the sun
       Serial.print("Solar System Mode");
     }
   }

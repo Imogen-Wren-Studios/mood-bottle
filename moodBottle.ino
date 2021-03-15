@@ -52,18 +52,18 @@ extern const TProgmemPalette16 myRedWhiteBluePalette_p PROGMEM;
 
 uint32_t transition_timer = 45;    // effect transitions are in seconds
 
-#define SOLAR_SYSTEM false       // When true it overwrites switching and only does solar system mode
+#define SOLAR_SYSTEM false      // When true it overwrites switching and only does solar system mode
 
 #define RANDOMISE_DIRECTION true
-#define START_PALETTE ceres      // Sterile while palette to start with
+#define START_PALETTE white_light     // Sterile while palette to start with
 //#define START_PALETTE select_palette(random(0, NUM_FX));
 
 #define PRINT_INDEX false
 #define DEBUG_DELAY false
 #define DEBUG_DELAY_TIME 300
 
-#define FADE_THROUGH_DELAY 6   // delay time between brightness changes during crossfade through black effect (millis)
-#define PAUSE_BLACK_DELAY 1000    // delay time to pause at black between crossfade for cleaner scene change effect
+#define FADE_THROUGH_DELAY 1   // delay time between brightness changes during crossfade through black effect (millis)
+#define PAUSE_BLACK_DELAY 100    // delay time to pause at black between crossfade for cleaner scene change effect
 
 #define PROGRAM_DELAY 10   // Delay to switch progams in minuites
 
