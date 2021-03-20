@@ -7,7 +7,7 @@
 * Great for background light for a bar or nightclub.
 * A modern take on an 80s lava lamp with a far wider range and mixes of colours
 * Colour Palettes hand picked for a mix of high impact and low impact effects
-** 2 Major modes: colour_palettes: High Impact Palettes, and planet_palettes: Low impact mode
+  * 2 Major modes: colour_palettes: High Impact Palettes, and planet_palettes: Low impact mode
 * Optimised for short WS2821B LED strings. All effects designed and optimized for just 8 LEDs! (But use as many as you wish)
 
 ___________________________________________________________________________________________________________
@@ -16,48 +16,48 @@ ________________________________________________________________________________
 
 ### colour_palettes
 
-Colour palettes were designed around some of my favourite colour combinations. They replicate well known plasma effects,
+<p>Colour palettes were designed around some of my favourite colour combinations. They replicate well known plasma effects,
 but by ristricting palettes to two or three shades, it creates a more random overall feeling than a constantly cycling rainbow effect.
 Don't worry though, for people who love the "RGB Rainbow" effect, several palettes are included which navigate the entire colour spectrum
-as well as a procedurally generated random palette.
+as well as a procedurally generated random palette. </p>
 
-All palettes in colour_palette mode are selected randomly using a random number generator.
+<p>All palettes in colour_palette mode are selected randomly using a random number generator.</p>
 
 
 ### planet_palettes
 
-Planet palettes are designed to be more subtle colour effects, based on a virtual tour of the major bodies of the Sol System. <br>
+<p>Planet palettes are designed to be more subtle colour effects, based on a virtual tour of the major bodies of the Sol System.</p> <br>
 
-This mode is triggered every 10 minutes, instead of randomly selecting palettes, our voyage starts in a heliocentric orbit
-around our star: Sol. Its bright yellow and orange, ocasionally pierced by a bright white light, aims to reflect 
-the feeling of gazing upon The Sun in space, harsh and unforgiving. <br>
+<p>This mode is triggered every 10 minutes, instead of randomly selecting palettes, our voyage starts in a heliocentric orbit
+around our star: **Sol**. Its bright yellow and orange, ocasionally pierced by a bright white light, aims to reflect 
+the feeling of gazing upon The Sun in space, harsh and unforgiving.</p> <br>
 
-From here we travel to Mercury, its reddish browns, oranges and yellows reflect its surface hot enough to melt tin, but it still 
-makes a welcome break from the harsh light before this. <br>
+<p>From here we travel to **Mercury**, its reddish browns, oranges and yellows reflect its surface hot enough to melt tin, but it still 
+makes a welcome break from the harsh light before this.</p> <br>
 
-On to Venus, the Oranges get more orange, the yellows become a toxic sulphurous cloud, and some pastel white clouds 
-start swirling. The planets surface might kill you instantly, but it sure is pretty to look at from orbit.<br>
+<p>On to **Venus**, the Oranges get more orange, the yellows become a toxic sulphurous cloud, and some pastel white clouds 
+start swirling. The planets surface might kill you instantly, but it sure is pretty to look at from orbit.</p><br>
 
-Our next stop is our mother world: Earth. Here we are welcomed by the familiar blues and turquoise of our home seas, the deep
+<p>Our next stop is our mother world: **Earth**. Here we are welcomed by the familiar blues and turquoise of our home seas, the deep
 and lucious greens of our rainforests, the dirty yellows of the sahara as seen from space, and the white whisps of clouds over the sea. 
-Watch out for a brief fly-past The Moon on our way out towards the outer planets.<br>
+Watch out for a brief fly-past **The Moon** on our way out towards the outer planets.</p><br>
 
-We leave the comfort of home, and fly to a far less forgiving world, Mars: The Red Planet. Although this palette is far less red than
+<p>We leave the comfort of home, and fly to a far less forgiving world, **Mars**: The Red Planet. Although this palette is far less red than
 one might expect. It was based on a mix between our impressions of Mars from a distance, and photos taken by our army of robots on the
-red planet's surface and in orbit. Browns, dark yellows and just a touch of white to reflect the frozen CO2 of the polar caps.<br>
+red planet's surface and in orbit. Browns, dark yellows and just a touch of white to reflect the frozen CO2 of the polar caps.</p><br>
 
-After our brief stops at each of the inner planets of the solar system, we pass the first of the gas giants, Jupiter. Its swirling white,
-orange, and yellow storms are peirced by a short flash of deep red, the biggest storm of the solar system and Jupiters most defining feature.<br>
+<p>After our brief stops at each of the inner planets of the solar system, we pass the first of the gas giants, **Jupiter**. Its swirling white,
+orange, and yellow storms are peirced by a short flash of deep red, the biggest storm of the solar system and Jupiters most defining feature.</p><br>
 
-Following in the footsteps of Voyager 2, we continue our tour of all the gas-giants. We arrive at Saturn, the brighter oranges of Jupiter
-are replaced with more subtle yellows and browns. Unlike Cassini, our journey does not end in the atmospheric clouds of Saturn, but on we continue...<br>
+<p>Following in the footsteps of Voyager 2, we continue our tour of all the gas-giants. We arrive at **Saturn**, the brighter oranges of Jupiter
+are replaced with more subtle yellows and browns. Unlike Cassini, our journey does not end in the atmospheric clouds of Saturn, but on we continue...</p><br>
 <br>
-To the blue methane worlds of Neptune and Uranius, both morphing between turquoise and deep blues, with the occasional white clouds and storms. <br>
+To the blue methane worlds of **Neptune** & **Uranius**, both morphing between turquoise and deep blues, with the occasional white clouds and storms.</p> <br>
 
-Finally we arrive at Pluto, this palette is based upon the false-colour images of Pluto's icy surface generated from images taken by the New Horizons
+<p>Finally we arrive at **Pluto**, this palette is based upon the false-colour images of Pluto's icy surface generated from images taken by the New Horizons
 spacecraft. Different types of ice are highlighted in whites, blues, reds and greys. <br>
 
-With our Voyage complete, we fade to black, and the program reverts to colour_palettes mode.<br><br>
+<p>With our Voyage complete, we fade to black, and the program reverts to colour_palettes mode.</p><br><br>
 
 
 ___________________________________________________________________________________________________________
@@ -69,7 +69,7 @@ ________________________________________________________________________________
 
 ### Hardware Requirements
 * Arduino compatable board:
-**Arduino Uno/Nano or ESP32 reccommended
+  * Arduino Uno/Nano or ESP32 reccommended
 * WS2812B Addressable LEDs
 * 100r Resistor between data LED_PIN and Data In (DI) on LED strip
 * 1000uF capacitor reccomended between 5v & GND for LED strip power supply 
