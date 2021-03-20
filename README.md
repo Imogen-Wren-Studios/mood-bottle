@@ -116,7 +116,8 @@ Set framerate, Reccomended between 25 & 60 fps.
 `#define UPDATES_PER_SECOND 30`<br>
 
 Define the number of steps each palette cycles through the hues between each LED in the strip.<br>
-We feel that 5 is a good balance between an interesting effect that doesn't feel too manic. <br>.
+We feel that 5 is a good balance between an interesting effect that doesn't feel too manic. <br>
+
 `#define HUE_STEPS 5`   <br>         
 
 
