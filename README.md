@@ -14,7 +14,7 @@ ________________________________________________________________________________
 
 ## Effects Modes
 
-### **colour_palettes**
+### ** colour_palettes **
 
 <p>Colour palettes were designed around some of my favourite colour combinations. They replicate well known plasma effects,
 but by ristricting palettes to two or three shades, it creates a more random overall feeling than a constantly cycling rainbow effect.
@@ -24,37 +24,37 @@ as well as a procedurally generated random palette. </p>
 <p>All palettes in colour_palette mode are selected randomly using a random number generator.</p>
 
 
-### **planet_palettes**
+### ** planet_palettes **
 
 <p>Planet palettes are designed to be more subtle colour effects, based on a virtual tour of the major bodies of the Sol System.</p> <br>
 
 <p>This mode is triggered every 10 minutes, instead of randomly selecting palettes, our voyage starts in a heliocentric orbit
-around our star: **Sol**. Its bright yellow and orange, ocasionally pierced by a bright white light, aims to reflect 
+around our star: ** Sol **. Its bright yellow and orange, ocasionally pierced by a bright white light, aims to reflect 
 the feeling of gazing upon The Sun in space, harsh and unforgiving.</p> <br>
 
-<p>From here we travel to **Mercury**, its reddish browns, oranges and yellows reflect its surface hot enough to melt tin, but it still 
+<p>From here we travel to ** Mercury **, its reddish browns, oranges and yellows reflect its surface hot enough to melt tin, but it still 
 makes a welcome break from the harsh light before this.</p> <br>
 
-<p>On to **Venus**, the Oranges get more orange, the yellows become a toxic sulphurous cloud, and some pastel white clouds 
+<p>On to ** Venus **, the Oranges get more orange, the yellows become a toxic sulphurous cloud, and some pastel white clouds 
 start swirling. The planets surface might kill you instantly, but it sure is pretty to look at from orbit.</p><br>
 
-<p>Our next stop is our mother world: **Earth**. Here we are welcomed by the familiar blues and turquoise of our home seas, the deep
+<p>Our next stop is our mother world: ** Earth **. Here we are welcomed by the familiar blues and turquoise of our home seas, the deep
 and lucious greens of our rainforests, the dirty yellows of the sahara as seen from space, and the white whisps of clouds over the sea. 
-Watch out for a brief fly-past **The Moon** on our way out towards the outer planets.</p><br>
+Watch out for a brief fly-past ** The Moon ** on our way out towards the outer planets.</p><br>
 
-<p>We leave the comfort of home, and fly to a far less forgiving world, **Mars**: The Red Planet. Although this palette is far less red than
+<p>We leave the comfort of home, and fly to a far less forgiving world, ** Mars **: The Red Planet. Although this palette is far less red than
 one might expect. It was based on a mix between our impressions of Mars from a distance, and photos taken by our army of robots on the
 red planet's surface and in orbit. Browns, dark yellows and just a touch of white to reflect the frozen CO2 of the polar caps.</p><br>
 
-<p>After our brief stops at each of the inner planets of the solar system, we pass the first of the gas giants, **Jupiter**. Its swirling white,
+<p>After our brief stops at each of the inner planets of the solar system, we pass the first of the gas giants, ** Jupiter **. Its swirling white,
 orange, and yellow storms are peirced by a short flash of deep red, the biggest storm of the solar system and Jupiters most defining feature.</p><br>
 
-<p>Following in the footsteps of Voyager 2, we continue our tour of all the gas-giants. We arrive at **Saturn**, the brighter oranges of Jupiter
+<p>Following in the footsteps of Voyager 2, we continue our tour of all the gas-giants. We arrive at ** Saturn **, the brighter oranges of Jupiter
 are replaced with more subtle yellows and browns. Unlike Cassini, our journey does not end in the atmospheric clouds of Saturn, but on we continue...</p><br>
 <br>
-To the blue methane worlds of **Neptune** & **Uranius**, both morphing between turquoise and deep blues, with the occasional white clouds and storms.</p> <br>
+To the blue methane worlds of ** Neptune ** & ** Uranius **, both morphing between turquoise and deep blues, with the occasional white clouds and storms.</p> <br>
 
-<p>Finally we arrive at **Pluto**, this palette is based upon the false-colour images of Pluto's icy surface generated from images taken by the New Horizons
+<p>Finally we arrive at ** Pluto **, this palette is based upon the false-colour images of Pluto's icy surface generated from images taken by the New Horizons
 spacecraft. Different types of ice are highlighted in whites, blues, reds and greys. <br>
 
 <p>With our Voyage complete, we fade to black, and the program reverts to colour_palettes mode.</p><br><br>
