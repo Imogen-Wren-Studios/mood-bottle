@@ -72,7 +72,9 @@ ________________________________________________________________________________
   * Arduino Uno/Nano or ESP32 reccommended
 * WS2812B Addressable LEDs
 * 100r Resistor between data LED_PIN and Data In (DI) on LED strip
-* 1000uF capacitor reccomended between 5v & GND for LED strip power supply 
+* 1000uF capacitor reccomended between 5v & GND for LED strip power supply
+* WARNING: Each WS2812B LED can draw **up to** 60 mA.
+   * Calculate total current draw for your strip and use a suitable power supply. 
 
 
 ### Deployment
