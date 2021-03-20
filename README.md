@@ -26,38 +26,38 @@ All palettes in colour_palette mode are selected randomly using a random number 
 
 ### planet_palettes
 
-Planet palettes are designed to be more subtle colour effects, based on a virtual tour of the major bodies of the Sol System.
+Planet palettes are designed to be more subtle colour effects, based on a virtual tour of the major bodies of the Sol System. <br>
 
 This mode is triggered every 10 minutes, instead of randomly selecting palettes, our voyage starts in a heliocentric orbit
 around our star: Sol. Its bright yellow and orange, ocasionally pierced by a bright white light, aims to reflect 
-the feeling of gazing upon The Sun in space, harsh and unforgiving. 
+the feeling of gazing upon The Sun in space, harsh and unforgiving. <br>
 
 From here we travel to Mercury, its reddish browns, oranges and yellows reflect its surface hot enough to melt tin, but it still 
-makes a welcome break from the harsh light before this. 
+makes a welcome break from the harsh light before this. <br>
 
 On to Venus, the Oranges get more orange, the yellows become a toxic sulphurous cloud, and some pastel white clouds 
-start swirling. The planets surface might kill you instantly, but it sure is pretty to look at from orbit.
+start swirling. The planets surface might kill you instantly, but it sure is pretty to look at from orbit.<br>
 
 Our next stop is our mother world: Earth. Here we are welcomed by the familiar blues and turquoise of our home seas, the deep
 and lucious greens of our rainforests, the dirty yellows of the sahara as seen from space, and the white whisps of clouds over the sea. 
-Watch out for a brief fly-past The Moon on our way out towards the outer planets.
+Watch out for a brief fly-past The Moon on our way out towards the outer planets.<br>
 
 We leave the comfort of home, and fly to a far less forgiving world, Mars: The Red Planet. Although this palette is far less red than
-one might expect. It was based on a mix between our impressions of Mars from a distance, and photos taken by our army of robots on the red planets surface. 
-Browns, dark yellows and just a touch of white to reflect the frozen CO2 of the polar caps.
+one might expect. It was based on a mix between our impressions of Mars from a distance, and photos taken by our army of robots on the
+red planet's surface and in orbit. Browns, dark yellows and just a touch of white to reflect the frozen CO2 of the polar caps.<br>
 
 After our brief stops at each of the inner planets of the solar system, we pass the first of the gas giants, Jupiter. Its swirling white,
-orange, and yellow storms are peirced by a short flash of deep red, the biggest storm of the solar system and Jupiters most defining feature.
+orange, and yellow storms are peirced by a short flash of deep red, the biggest storm of the solar system and Jupiters most defining feature.<br>
 
 Following in the footsteps of Voyager 2, we continue our tour of all the gas-giants. We arrive at Saturn, the brighter oranges of Jupiter
-are replaced with more subtle yellows and browns. Unlike Cassini, our journey does not end in the atmospheric clouds of Saturn, but on we continue...
-
-To the blue methane worlds of Neptune and Uranius, both morphing between turquoise and deep blues, with the occasional white clouds and storms. 
+are replaced with more subtle yellows and browns. Unlike Cassini, our journey does not end in the atmospheric clouds of Saturn, but on we continue...<br>
+<br>
+To the blue methane worlds of Neptune and Uranius, both morphing between turquoise and deep blues, with the occasional white clouds and storms. <br>
 
 Finally we arrive at Pluto, this palette is based upon the false-colour images of Pluto's icy surface generated from images taken by the New Horizons
-spacecraft. Different types of ice are highlighted in whites, blues, reds and greys. 
+spacecraft. Different types of ice are highlighted in whites, blues, reds and greys. <br>
 
-With our Voyage complete, we fade to black, and the program reverts to colour_palettes mode.
+With our Voyage complete, we fade to black, and the program reverts to colour_palettes mode.<br><br>
 
 
 ___________________________________________________________________________________________________________
