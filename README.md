@@ -43,7 +43,7 @@ and lucious greens of our rainforests, the dirty yellows of the sahara as seen f
 Watch out for a brief fly-past The Moon on our way out towards the outer planets.
 
 We leave the comfort of home, and fly to a far less forgiving world, Mars: The Red Planet. Although this palette is far less red than
-one might expect. It was based on a mix between our impressions of Mars, and photos taken by our army of robots on the red planets surface. 
+one might expect. It was based on a mix between our impressions of Mars from a distance, and photos taken by our army of robots on the red planets surface. 
 Browns, dark yellows and just a touch of white to reflect the frozen CO2 of the polar caps.
 
 After our brief stops at each of the inner planets of the solar system, we pass the first of the gas giants, Jupiter. Its swirling white,
