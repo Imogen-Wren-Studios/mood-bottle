@@ -14,7 +14,7 @@ ________________________________________________________________________________
 
 ## Effects Modes
 
-### colour_palettes
+### **colour_palettes**
 
 <p>Colour palettes were designed around some of my favourite colour combinations. They replicate well known plasma effects,
 but by ristricting palettes to two or three shades, it creates a more random overall feeling than a constantly cycling rainbow effect.
@@ -24,7 +24,7 @@ as well as a procedurally generated random palette. </p>
 <p>All palettes in colour_palette mode are selected randomly using a random number generator.</p>
 
 
-### planet_palettes
+### **planet_palettes**
 
 <p>Planet palettes are designed to be more subtle colour effects, based on a virtual tour of the major bodies of the Sol System.</p> <br>
 
