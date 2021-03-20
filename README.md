@@ -5,8 +5,10 @@
 * Bar/Mood light designed to control WS2812B Addressable LEDs for a feature ornament.
 * Slow to Medium colour blending to create an effect that is visually stimulating without being too distracting.
 * Great for background light for a bar or nightclub.
-* A modern take on an 80s lava lamp with a far wider range of colours
+* A modern take on an 80s lava lamp with a far wider range and mixes of colours
 * Colour Palettes hand picked for a mix of high impact and low impact effects
+** 2 Major modes: colour_palettes: High Impact Palettes, and planet_palettes: Low impact mode
+* Optimised for short WS2821B LED strings. All effects designed and optimized for just 8 LEDs! (But use as many as you wish)
 
 ___________________________________________________________________________________________________________
 
@@ -24,26 +26,38 @@ All palettes in colour_palette mode are selected randomly using a random number 
 
 ### planet_palettes
 
-Planet palettes are designed to be more subtle colour effects, a tour of the major bodies of the Sol System.
+Planet palettes are designed to be more subtle colour effects, based on a virtual tour of the major bodies of the Sol System.
 
-This mode is triggered every 10 minutes, instead of randomly selecting palettes, our tour starts in a heliocentric orbit
+This mode is triggered every 10 minutes, instead of randomly selecting palettes, our voyage starts in a heliocentric orbit
 around our star: Sol. Its bright yellow and orange, ocasionally pierced by a bright white light, aims to reflect 
 the feeling of gazing upon The Sun in space, harsh and unforgiving. 
 
-From here we travel to Mercury, its reddish browns, oranges and yellows a welcome break from the harsh light before this. 
+From here we travel to Mercury, its reddish browns, oranges and yellows reflect its surface hot enough to melt tin, but it still 
+makes a welcome break from the harsh light before this. 
 
-Onto Venus, the Oranges get more orange, the yellows become a toxic sulphurous cloud, and some pastell white clouds 
-start swirling around. The planets surface might kill you instantly, but it sure is pretty to look at from orbit.
+On to Venus, the Oranges get more orange, the yellows become a toxic sulphurous cloud, and some pastel white clouds 
+start swirling. The planets surface might kill you instantly, but it sure is pretty to look at from orbit.
 
-Our next stop is our mother world: Earth. Here we are welcomed by the familure blues and turqoise of our home seas, the deep
-and lucious greens of our rainforests, the dirty yellows of the sahara as seen from space and the white whisps of clouds over the sea.
+Our next stop is our mother world: Earth. Here we are welcomed by the familiar blues and turquoise of our home seas, the deep
+and lucious greens of our rainforests, the dirty yellows of the sahara as seen from space, and the white whisps of clouds over the sea. 
+Watch out for a brief fly-past The Moon on our way out towards the outer planets.
 
 We leave the comfort of home, and fly to a far less forgiving world, Mars: The Red Planet. Although this palette is far less red than
 one might expect. It was based on a mix between our impressions of Mars, and photos taken by our army of robots on the red planets surface. 
 Browns, dark yellows and just a touch of white to reflect the frozen CO2 of the polar caps.
 
-(Other Emotive Descriptions Coming Soon)
+After our brief stops at each of the inner planets of the solar system, we pass the first of the gas giants, Jupiter. Its swirling white,
+orange, and yellow storms are peirced by a short flash of deep red, the biggest storm of the solar system and Jupiters most defining feature.
 
+Following in the footsteps of Voyager 2, we continue our tour of all the gas-giants. We arrive at Saturn, the brighter oranges of Jupiter
+are replaced with more subtle yellows and browns. Unlike Cassini, our journey does not end in the atmospheric clouds of Saturn, but on we continue...
+
+To the blue methane worlds of Neptune and Uranius, both morphing between turquoise and deep blues, with the occasional white clouds and storms. 
+
+Finally we arrive at Pluto, this palette is based upon the false-colour images of Pluto's icy surface generated from images taken by the New Horizons
+spacecraft. Different types of ice are highlighted in whites, blues, reds and greys. 
+
+With our Voyage complete, we fade to black, and the program reverts to colour_palettes mode.
 
 
 ___________________________________________________________________________________________________________
