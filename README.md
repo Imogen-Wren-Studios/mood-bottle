@@ -57,7 +57,7 @@ To the blue methane worlds of **Neptune** & **Uranius** , both morphing between 
 <p>Finally we arrive at **Pluto** , this palette is based upon the false-colour images of Pluto's icy surface generated from images taken by the New Horizons
 spacecraft. Different types of ice are highlighted in whites, blues, reds and greys. <br>
 
-<p>With our Voyage complete, we fade to black, and the program reverts to colour_palettes mode.</p><br><br>
+<p>With our Voyage complete, we leave the solar system and our horizon fades to black, the program reverts to colour_palettes mode.</p><br><br>
 
 
 ___________________________________________________________________________________________________________
@@ -91,10 +91,10 @@ Program contains some settings that can be easily edited to change the program f
 
 ### In moodBottle.ini File
 
-Select the data pin for WS2812B
+Select the data pin for WS2812B<br>
 `#define LED_PIN 5`<br><br>
 
-Specify number of LEDs in WS2812B strip
+Specify number of LEDs in WS2812B strip<br>
 `#define NUM_LEDS    8`<br><br>
 
 Define the maximum brightness for all effects values from 0 - 255 are valid.
