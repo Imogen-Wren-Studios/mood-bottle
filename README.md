@@ -50,10 +50,9 @@ red planet's surface and in orbit. Browns, dark yellows and just a touch of whit
 orange, and yellow storms are peirced by a short flash of deep red, the biggest storm of the solar system and Jupiters most defining feature.</p><br>
 
 <p>Following in the footsteps of Voyager 2, we continue our tour of all the gas-giants. We arrive at **Saturn** , the brighter oranges of Jupiter
-are replaced with more subtle yellows and browns. Unlike Cassini, our journey does not end in the atmospheric clouds of Saturn, but on we continue...</p><br>
+are replaced with more subtle yellows and browns. Unlike Cassini, our journey does not end in the atmospheric clouds of Saturn, but on we continue...</p>
 <br>
 To the blue methane worlds of **Neptune** & **Uranius** , both morphing between turquoise and deep blues, with the occasional white clouds and storms.</p> <br>
-
 <p>Finally we arrive at **Pluto** , this palette is based upon the false-colour images of Pluto's icy surface generated from images taken by the New Horizons
 spacecraft. Different types of ice are highlighted in whites, blues, reds and greys. <br>
 
