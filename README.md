@@ -66,7 +66,8 @@ ________________________________________________________________________________
 * FastLED Library available @ [FastLED Library](https://github.com/FastLED/FastLED)
 * autoDelay Library available from Pan Galactic Tech @ [autoDelay Library](https://github.com/PanGalacticTech/autoDelay_Library)
 * Arduino IDE available from [Arduino - Open Source](https://www.arduino.cc/en/software)
-* 
+
+
 ### Hardware Requirements
 * Arduino compatable board:
   * Arduino Uno/Nano or ESP32 reccommended
