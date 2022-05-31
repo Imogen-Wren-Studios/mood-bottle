@@ -1,4 +1,4 @@
-#include <FastLED.h>
+ #include <FastLED.h>
 
 #include <autoDelay.h>
 
@@ -6,9 +6,9 @@
 
 
 
-#define LED_PIN     0
-#define NUM_LEDS    6
-#define BRIGHTNESS  255
+#define LED_PIN     5
+#define NUM_LEDS    9
+#define BRIGHTNESS  50
 #define LED_TYPE    WS2811
 #define COLOR_ORDER GRB
 CRGBArray <NUM_LEDS> leds;
