@@ -271,51 +271,51 @@ CRGBPalette16 select_planet() {
   switch (current_planet) {
     case 0:
       outputPalette = the_sun;
-      Serial.println("The Sun");
-      Serial.println("Entering Heliocentric Orbit");
+ //     Serial.println("The Sun");
+//      Serial.println("Entering Heliocentric Orbit");
       break;
     case 1:
       outputPalette = planet_mercury;
-      Serial.println("Mercury");
+ //     Serial.println("Mercury");
       break;
     case 2:
       outputPalette = planet_venus;
-      Serial.println("Venus");
+ //     Serial.println("Venus");
       break;
     case 3:
       outputPalette = planet_earth;
-      Serial.println("Earth");
+//      Serial.println("Earth");
       break;
     case 4:
       outputPalette = the_moon;
-      Serial.println("The Moon");
+//      Serial.println("The Moon");
       break;
     case 5:
       outputPalette = planet_mars;
-      Serial.println("Mars");
+ //     Serial.println("Mars");
       break;
     case 6:
       outputPalette = planet_jupiter;
-      Serial.println("Jupiter");
+//      Serial.println("Jupiter");
       break;
     case 7:
       outputPalette = planet_saturn;
-      Serial.println("Saturn");
+ //     Serial.println("Saturn");
       break;
     case 8:
       outputPalette = planet_uranus;
-      Serial.println("Uranus");
+ //     Serial.println("Uranus");
       break;
     case 9:
       outputPalette = planet_neptune;
-      Serial.println("Neptune");
+//      Serial.println("Neptune");
       break;
     case 10:
       outputPalette = planet_pluto;
-      Serial.println("Pluto");
+//      Serial.println("Pluto");
       break;
     default:
-      Serial.println("Random");
+ //     Serial.println("Random");
       for ( int i = 0; i < 16; i++) {
         outputPalette[i] = CHSV( random8(), 255, random8());
       }
@@ -327,7 +327,7 @@ CRGBPalette16 select_planet() {
   if (current_planet >= 12) {
     current_planet = 0;
     solar_system_mode = false;    // Once we have finished our flight around the solar system, return to colour palletes
-    Serial.println("Colour Palette Mode");
+//    Serial.println("Colour Palette Mode");
 
   }
   return outputPalette;

@@ -6,8 +6,8 @@
 
 
 
-#define LED_PIN     5
-#define NUM_LEDS    8
+#define LED_PIN     0
+#define NUM_LEDS    6
 #define BRIGHTNESS  255
 #define LED_TYPE    WS2811
 #define COLOR_ORDER GRB
@@ -81,7 +81,7 @@ void print_uptime() {
   seconds_running = seconds_running - ((minutes_running * 60) + (hours_running * 3600));
   sprintf(clockString, "Uptime: [%02i]:[%02i]:[%02i]", hours_running, minutes_running, seconds_running);
 
-  Serial.println(clockString);
+ // Serial.println(clockString);
 
 }
 

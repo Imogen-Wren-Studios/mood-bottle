@@ -102,8 +102,8 @@ void randomise_colour_direction() {
   if (hueShiftDelay.millisDelay(hue_shift_timing)) {
     //   hue_steps = random(-10, 10);
     index_addr = random(-10, 10);
-    Serial.print("Randomising Direction: ");
-    Serial.println(index_addr);
+  //  Serial.print("Randomising Direction: ");
+  //  Serial.println(index_addr);
 
     //  sprintf(debugPrint, "hue_steps: [%i]", hue_steps);
     //  Serial.println(debugPrint);
@@ -128,9 +128,9 @@ bool ledDirection = true;         // Sets the LEDs to update in a positive direc
 void randomise_led_directions() {
   if (directionDelay.millisDelay(direction_timing)) {    // if delay time is up,
     byte diceRoll = random(0, 5);                               // Roll the dice
-    Serial.print("Roll Dice: [");
-    Serial.print(diceRoll);
-    Serial.println("]");
+  //  Serial.print("Roll Dice: [");
+  //  Serial.print(diceRoll);
+  //  Serial.println("]");
     if (diceRoll < 1) {                                     // if less than 2, //do nothing
       //   Serial.println("Dice Roll Failed, Direction Unchanged");
     } else {
@@ -168,7 +168,7 @@ autoDelay shift_effect;
 // Cycles through banks of palettes based on program type
 void switchPalette() {
   if (shift_effect.secondsDelay(transition_timer)) {
-    Serial.println("Fading into New Palette");
+//    Serial.println("Fading into New Palette");
     print_uptime();
     currentPalette = nextPalette;
     if (solar_system_mode or SOLAR_SYSTEM) {
@@ -191,13 +191,13 @@ autoDelay programDelay;
 void switchProgram() {
   if (programDelay.minutesDelay(PROGRAM_DELAY)) {
     if (solar_system_mode) {
-      Serial.print("Timer For Colour Mode");
+   //   Serial.print("Timer For Colour Mode");
       // solar_system_mode = false;                         // Not switched here because it loops once through and changes elsewhere
       //  Serial.print("Colour Palette Mode");
     } else {
       solar_system_mode = true;
       current_planet = 0;     // reset current planet to the sun
-      Serial.print("Solar System Mode");
+  //    Serial.print("Solar System Mode");
     }
   }
 }
@@ -226,8 +226,8 @@ void FillLEDsFromPaletteColors( uint8_t colorIndex) {
     }
   }
   if (PRINT_INDEX) {
-    Serial.print("Colour Index: [");
-    Serial.print(colorIndex);
-    Serial.println("]");
+//    Serial.print("Colour Index: [");
+ //   Serial.print(colorIndex);
+ //   Serial.println("]");
   }
 }
